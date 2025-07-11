@@ -13,6 +13,28 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-stone-50">
       <Navbar />
+      <Hero />
+      <section id='features'>
+        <Features />
+      </section>
+      <section id='how-it-works'>
+        <HowItWorks />
+      </section>
+      <section id='pricing'>
+        <Pricing />
+      </section>
+      <section id='faq'>
+        <FAQ />
+      </section>
+      <section id='testimonial'>
+        <Testimonial />
+      </section>
+      <section id='cta'>
+        <CTA />
+      </section>
+      <section id='contact-form'>
+        <Contact />
+      </section>
     </div>
   );
 }
