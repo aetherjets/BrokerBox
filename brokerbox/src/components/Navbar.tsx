@@ -86,7 +86,6 @@ const Navbar = () => {
       opacity: 0,
       transition: {
         duration: 0.3,
-        ease: ["easeInOut"],
       },
     },
     open: {
@@ -94,7 +93,6 @@ const Navbar = () => {
       opacity: 1,
       transition: {
         duration: 0.3,
-        ease: ["easeInOut"],
       },
     },
   };
@@ -290,7 +288,6 @@ const Navbar = () => {
                   {navLinks.map((link, index) => (
                     <motion.a
                       key={link.name}
-                      href={link.href}
                       variants={mobileItemVariants}
                       initial="closed"
                       animate="open"

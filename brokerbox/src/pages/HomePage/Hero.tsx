@@ -1,7 +1,10 @@
 "use client"
 import { motion } from 'framer-motion'
+import { useRouter } from 'next/navigation';
 
 export default function Hero() {
+  const route = useRouter();
+
   return (
     <section className="bg-gradient-to-br from-white to-stone-50 py-24 px-4 md:py-32 overflow-hidden relative">
       <motion.div 
@@ -58,10 +61,11 @@ export default function Hero() {
               transition={{ duration: 0.7, delay: 0.8 }}
             >
               <motion.button 
-                className="bg-black text-white px-8 py-4 rounded-lg font-semibold relative overflow-hidden group"
+                className="bg-black text-white px-8 py-4 rounded-lg font-semibold relative overflow-hidden group cursor-pointer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                onClick={() =>route.push('/sign-in')}
               >
                 <span className="relative z-10">Start Your Free Trial</span>
                 <motion.div
@@ -79,7 +83,7 @@ export default function Hero() {
               </motion.button>
               
               <motion.button 
-                className="border-2 border-black text-black px-8 py-4 rounded-lg font-semibold relative overflow-hidden group"
+                className="border-2 border-black text-black px-8 py-4 rounded-lg font-semibold relative overflow-hidden group cursor-pointer" 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}

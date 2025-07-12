@@ -4,10 +4,11 @@ import Stats from '@/pages/HomePage/Stats';
 import HowItWorks from '@/pages/HomePage/HowItWorks';
 import CTA from '@/pages/HomePage/CTA';
 import Pricing from '@/pages/HomePage/Pricing';
-import FAQ from '@/pages/HomePage/Faq';
 import Testimonial from '@/pages/HomePage/Testimonial';
 import Contact from '@/pages/HomePage/Contact';
 import Navbar from '@/components/Navbar';
+import FAQ from '@/pages/HomePage/FAQ';
+import Footer from '@/pages/HomePage/Footer';
 
 export default function Home() {
   return (
@@ -34,6 +35,9 @@ export default function Home() {
       </section>
       <section id='contact-form'>
         <Contact />
+      </section>
+      <section>
+        <Footer />
       </section>
     </div>
   );
