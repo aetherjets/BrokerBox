@@ -70,9 +70,10 @@ const BrokerOnboarding: React.FC<BrokerOnboardingProps> = ({ onComplete }) => {
   const financeTypes = [
     "Asset Finance",
     "Invoice Finance",
-    "Business Loans",
+    "Secured Loans",
+    "Unsecured Loans",
     "Property Finance",
-    "Cashflow Finance",
+    "Merchant Cash Advance",
     "Trade Finance",
     "Other",
   ];

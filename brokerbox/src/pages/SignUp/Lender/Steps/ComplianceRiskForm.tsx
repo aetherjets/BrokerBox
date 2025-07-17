@@ -74,7 +74,7 @@ const ComplianceRiskForm: React.FC<ComplianceRiskFormProps> = ({
         {/* AML/KYC documentation */}
         <motion.div className="mb-8" variants={itemVariants}>
           <h3 className="text-base font-medium text-gray-800 mb-3">
-            AML/KYC documentation you require before funding:
+            Minimum AML/KYC documentation required before funding:
           </h3>
           
           <div className="space-y-2">
