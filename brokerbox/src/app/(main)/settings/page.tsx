@@ -8,7 +8,6 @@ import {
   ShieldCheck, Webhook, ChevronRight, Bell, UserCog
 } from 'lucide-react'
 
-// Import settings component modules
 import PaymentSettings from '@/pages/Settings/PaymentSettings'
 import TeamSettings from '@/pages/Settings/TeamSettings'
 import CompanySettings from '@/pages/Settings/CompanySettings'
