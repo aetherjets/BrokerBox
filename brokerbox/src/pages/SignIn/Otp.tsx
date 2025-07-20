@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 
 interface OtpProps {
@@ -12,13 +12,16 @@ const Otp = ({ onVerify, onCancel, isLoading }: OtpProps) => {
   const [verificationCode, setVerificationCode] = useState(['', '', '', '', '', ''])
   const [countdown, setCountdown] = useState(30)
   const [canResend, setCanResend] = useState(false)
-  
+  const didMount = useRef(false)
+
   useEffect(() => {
-    // Focus on first input when component mounts
-    const firstInput = document.getElementById('code-0')
-    if (firstInput) firstInput.focus()
-    
-    // Set up countdown for resend button
+    if (!didMount.current) {
+      const firstInput = document.getElementById('code-0')
+      if (firstInput) firstInput.focus()
+      didMount.current = true
+    }
+
+    // Countdown timer
     let timer: ReturnType<typeof setInterval>
     if (countdown > 0) {
       timer = setInterval(() => {
@@ -31,43 +34,42 @@ const Otp = ({ onVerify, onCancel, isLoading }: OtpProps) => {
         })
       }, 1000)
     }
-    
+
     return () => {
       if (timer) clearInterval(timer)
     }
   }, [countdown])
-  
-  const handleVerificationCodeChange = (index: number, value: string) => {
 
+  const handleVerificationCodeChange = (index: number, value: string) => {
     if (value.length > 1) value = value.slice(0, 1)
     if (!/^\d*$/.test(value) && value !== '') return
-    
+
     const newVerificationCode = [...verificationCode]
     newVerificationCode[index] = value
     setVerificationCode(newVerificationCode)
-    
+
     if (value && index < 5) {
       const nextInput = document.getElementById(`code-${index + 1}`)
       if (nextInput) nextInput.focus()
     }
-    
+
     if (value && index === 5 && !newVerificationCode.some(digit => !digit)) {
       handleSubmit()
     }
   }
-  
+
   const handleKeyDown = (index: number, e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Backspace' && !verificationCode[index] && index > 0) {
       const prevInput = document.getElementById(`code-${index - 1}`)
       if (prevInput) prevInput.focus()
     }
   }
-  
+
   const handleSubmit = () => {
     const code = verificationCode.join('')
     onVerify(code)
   }
-  
+
   const handleResend = () => {
     setVerificationCode(['', '', '', '', '', ''])
     setCountdown(30)
@@ -75,22 +77,20 @@ const Otp = ({ onVerify, onCancel, isLoading }: OtpProps) => {
 
     const firstInput = document.getElementById('code-0')
     if (firstInput) firstInput.focus()
-    // Simulate OTP resend
-    // call an API endpoint here
   }
-  
+
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { 
+    visible: {
       opacity: 1,
       transition: { staggerChildren: 0.1 }
     }
   }
-  
+
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
-    visible: { 
-      y: 0, 
+    visible: {
+      y: 0,
       opacity: 1,
       transition: { type: "spring" as const, stiffness: 300 }
     }
@@ -105,21 +105,21 @@ const Otp = ({ onVerify, onCancel, isLoading }: OtpProps) => {
       className="w-full"
     >
       <div className="mb-8">
-        <motion.h2 
+        <motion.h2
           className="text-2xl font-bold text-black mb-2"
           variants={itemVariants}
         >
           Two-Factor Authentication
         </motion.h2>
-        <motion.p 
+        <motion.p
           className="text-stone-600"
           variants={itemVariants}
         >
           Enter the 6-digit verification code sent to your mobile device
         </motion.p>
       </div>
-      
-      <motion.form 
+
+      <motion.form
         onSubmit={(e) => {
           e.preventDefault()
           handleSubmit()
@@ -154,7 +154,7 @@ const Otp = ({ onVerify, onCancel, isLoading }: OtpProps) => {
             ))}
           </div>
         </motion.div>
-        
+
         <motion.button
           type="submit"
           className="w-full py-3 bg-black text-white rounded-lg font-semibold relative overflow-hidden"
@@ -170,8 +170,8 @@ const Otp = ({ onVerify, onCancel, isLoading }: OtpProps) => {
             </svg>
           ) : "Verify"}
         </motion.button>
-        
-        <motion.div 
+
+        <motion.div
           className="flex justify-between"
           variants={itemVariants}
         >
@@ -182,15 +182,14 @@ const Otp = ({ onVerify, onCancel, isLoading }: OtpProps) => {
           >
             ← Back to sign in
           </button>
-          
+
           <button
             type="button"
             onClick={handleResend}
-            className={`text-sm font-medium transition-colors ${
-              canResend 
-                ? 'text-stone-900 hover:text-stone-700' 
-                : 'text-stone-400 cursor-not-allowed'
-            }`}
+            className={`text-sm font-medium transition-colors ${canResend
+              ? 'text-stone-900 hover:text-stone-700'
+              : 'text-stone-400 cursor-not-allowed'
+              }`}
             disabled={!canResend}
           >
             {canResend ? 'Resend code' : `Resend in ${countdown}s`}
