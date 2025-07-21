@@ -163,7 +163,7 @@ const Navbar2 = () => {
                     </div>
                   </div>
                   <div className="py-1">
-                    <DropdownMenuItem className="cursor-pointer hover:bg-gray-50 py-2 px-3">
+                    <DropdownMenuItem onClick={() => router.push("/profile")} className="cursor-pointer hover:bg-gray-50 py-2 px-3">
                       <User className="h-4 w-4 mr-2 text-gray-500" />
                       <span>Your Profile</span>
                     </DropdownMenuItem>
@@ -173,7 +173,7 @@ const Navbar2 = () => {
                     </DropdownMenuItem>
                   </div>
                   <DropdownMenuSeparator className="m-0" />
-                  <DropdownMenuItem className="cursor-pointer hover:bg-gray-50 py-2 px-3 text-gray-900">
+                  <DropdownMenuItem onClick={() => router.push("/sign-in")} className="cursor-pointer hover:bg-gray-50 py-2 px-3 text-gray-900">
                     Sign out
                   </DropdownMenuItem>
                 </DropdownMenuContent>

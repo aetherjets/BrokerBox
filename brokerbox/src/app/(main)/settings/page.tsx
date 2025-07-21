@@ -17,27 +17,62 @@ import WebhookSettings from '@/pages/Settings/WebhookSettings'
 
 const SettingsPage = () => {
   const [activeTab, setActiveTab] = useState("payment")
+  const [isPageLoaded, setIsPageLoaded] = useState(false)
   
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { 
       opacity: 1, 
       transition: { 
-        staggerChildren: 0.05,
+        duration: 0.3,
         when: "beforeChildren",
-        duration: 0.3
+        delayChildren: 0.1
       } 
     }
   };
   
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
+  const sidebarVariants = {
+    hidden: { opacity: 0, x: -20 },
     visible: { 
-      y: 0, 
+      opacity: 1, 
+      x: 0,
+      transition: { duration: 0.4 }
+    }
+  };
+  
+  const contentVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
       opacity: 1,
+      transition: { duration: 0.4, delay: 0.2 }
+    }
+  };
+  
+  const itemVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { staggerChildren: 0.05 }
+    }
+  };
+  
+  const itemChildVariants = {
+    hidden: { opacity: 0, y: 10 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
       transition: { type: "spring" as const, stiffness: 300, damping: 24 }
     }
   };
+  
+  // Ensure sidebar is fully loaded before animations
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsPageLoaded(true);
+    }, 100);
+    
+    return () => clearTimeout(timer);
+  }, []);
   
   const handleTabChange = (value: string) => {
     setActiveTab(value);
@@ -47,16 +82,19 @@ const SettingsPage = () => {
     <motion.div 
       className="py-4 px-4 md:px-8 max-w-[1600px] mx-auto"
       initial="hidden"
-      animate="visible"
+      animate={isPageLoaded ? "visible" : "hidden"}
       variants={containerVariants}
     >
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Navigation Sidebar */}
-        <motion.div variants={itemVariants} className="lg:w-1/4">
-          <div className="lg:fixed lg:w-[calc(25%-1rem)]">
+        <motion.div 
+          variants={sidebarVariants}
+          className="lg:w-1/4"
+        >
+          <div className="lg:sticky lg:top-4 w-full">
             <Card className="overflow-hidden border border-gray-100 shadow-sm bg-white">
               <CardContent className="p-0">
-                <div className="bg-white border-b border-gray-100 text-gray-900 px-6 pb-4">
+                <div className="bg-white border-b border-gray-100 text-gray-900 px-6 py-4">
                   <h2 className="font-semibold flex items-center text-2xl">
                     <UserCog className="w-5 h-5 mr-2 text-gray-700" />
                     Settings
@@ -64,7 +102,7 @@ const SettingsPage = () => {
                   <p className="text-gray-500 text-sm mt-1">Manage your preferences</p>
                 </div>
                 
-                <div className="p-3">
+                <motion.div className="p-3" variants={itemVariants}>
                   {[
                     {
                       id: "payment", 
@@ -114,9 +152,10 @@ const SettingsPage = () => {
                       onClick={() => handleTabChange(tab.id)}
                       className={`w-full flex items-start gap-3 py-2 px-4 rounded-lg text-left transition-all mb-1 relative overflow-hidden ${
                         activeTab === tab.id 
-                          ? "bg-gray-100 shadow-sm  cursor-pointer" 
-                          : "hover:bg-gray-50 cursor-pointer"
+                          ? "bg-gray-100 shadow-sm" 
+                          : "hover:bg-gray-50"
                       }`}
+                      variants={itemChildVariants}
                       whileHover={{ scale: 1.01 }}
                       whileTap={{ scale: 0.99 }}
                     >
@@ -151,7 +190,7 @@ const SettingsPage = () => {
                       )}
                     </motion.button>
                   ))}
-                </div>
+                </motion.div>
                 
                 <div className="p-4 mt-2 mx-3 mb-3 bg-gradient-to-r from-slate-50 to-gray-50 rounded-lg border border-dashed border-slate-200">
                   <div className="flex items-center gap-3">
@@ -170,7 +209,10 @@ const SettingsPage = () => {
         </motion.div>
         
         {/* Settings Content */}
-        <motion.div variants={itemVariants as any} className="lg:w-3/4">
+        <motion.div 
+          variants={contentVariants} 
+          className="lg:w-3/4"
+        >
           <div className="w-full">
             {activeTab === "payment" && <PaymentSettings />}
             {activeTab === "team" && <TeamSettings />}
