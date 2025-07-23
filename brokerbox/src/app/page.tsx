@@ -1,6 +1,5 @@
 import Hero from '@/pages/HomePage/Hero';
 import Features from '@/pages/HomePage/Features';
-import Stats from '@/pages/HomePage/Stats';
 import HowItWorks from '@/pages/HomePage/HowItWorks';
 import CTA from '@/pages/HomePage/CTA';
 import Pricing from '@/pages/HomePage/Pricing';
@@ -9,12 +8,16 @@ import Contact from '@/pages/HomePage/Contact';
 import Navbar from '@/components/Navbar';
 import FAQ from '@/pages/HomePage/FAQ';
 import Footer from '@/pages/HomePage/Footer';
+import PreHero from '@/pages/PreLaunch/PreHero';
+import PreCTA from '@/pages/PreLaunch/PreCTA';
+import PreFAQ from '@/pages/PreLaunch/PreFAQ';
+import PrePricing from '@/pages/PreLaunch/PrePricing';
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-stone-50">
       <Navbar />
-      <Hero />
+      <PreHero />
       <section id='features'>
         <Features />
       </section>
@@ -22,16 +25,16 @@ export default function Home() {
         <HowItWorks />
       </section>
       <section id='pricing'>
-        <Pricing />
+        <PrePricing />
       </section>
       <section id='faq'>
-        <FAQ />
+        <PreFAQ />
       </section>
-      <section id='testimonial'>
+      {/* <section id='testimonial'>
         <Testimonial />
-      </section>
+      </section> */}
       <section id='cta'>
-        <CTA />
+        <PreCTA />
       </section>
       <section id='contact-form'>
         <Contact />
