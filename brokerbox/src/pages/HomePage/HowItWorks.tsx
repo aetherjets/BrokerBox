@@ -5,6 +5,12 @@ import { useRouter } from 'next/navigation';
 export default function HowItWorks() {
 
   const router = useRouter();
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   const steps = [
     {
@@ -218,7 +224,7 @@ export default function HowItWorks() {
             className="bg-black text-white px-8 py-4 rounded-lg font-medium inline-flex items-center gap-2 group cursor-pointer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => router.push('/sign-in')}
+            onClick={() => scrollToSection("pricing")}
           >
             Start Your Journey
             <motion.svg 

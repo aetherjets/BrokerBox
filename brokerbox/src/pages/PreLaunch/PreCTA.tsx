@@ -5,6 +5,13 @@ import { useRouter } from 'next/navigation';
 export default function PreCTA() {
   const router = useRouter();
 
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="bg-gradient-to-br from-black to-stone-900 text-white py-24 px-4 relative overflow-hidden">
       {/* Animated background elements */}
@@ -74,7 +81,7 @@ export default function PreCTA() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
-            onClick={() => router.push('/early-access')}
+            onClick={() => scrollToSection('pricing')}
           >
             <span className="relative z-10">Secure Your Spot - £640</span>
             <motion.div 
@@ -90,27 +97,7 @@ export default function PreCTA() {
               transition={{ duration: 0.3 }}
             />
           </motion.button>
-          
-          {/* <motion.button 
-            className="border-2 border-white/80 text-white px-8 py-4 rounded-lg font-semibold relative overflow-hidden group"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ type: "spring", stiffness: 400, damping: 17 }}
-          >
-            <span className="relative z-10">Learn More</span>
-            <motion.div 
-              className="absolute inset-0 bg-white/10"
-              initial={{ scale: 0 }}
-              whileHover={{ scale: 1 }}
-              transition={{ duration: 0.3 }}
-            />
-            <motion.div 
-              className="absolute inset-0 bg-white/5"
-              initial={{ x: "-100%" }}
-              whileHover={{ x: "100%" }}
-              transition={{ duration: 1, ease: "easeInOut" }}
-            />
-          </motion.button> */}
+        
         </motion.div>
         
         <motion.div 

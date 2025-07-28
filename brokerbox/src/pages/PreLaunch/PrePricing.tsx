@@ -1,9 +1,20 @@
 "use client"
 import React from 'react'
 import { motion } from 'framer-motion'
+import axios from 'axios';
+import { loadStripe } from '@stripe/stripe-js';
+
+let stripePromise: ReturnType<typeof loadStripe> | null = null;
+const getStripe = () => {
+  if (!stripePromise) {
+    stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
+  }
+  return stripePromise;
+};
 
 const PrePricing = () => {
-  // Founding Broker benefits
+  const [emailInputValue, setEmailInputValue] = React.useState("");
+  
   const founderBenefits = [
     "12 months full access from launch",
     "Early beta access",
@@ -14,6 +25,38 @@ const PrePricing = () => {
     "Competitive advantage in the market",
     "Establish lender relationships first"
   ]
+
+
+  const handleSubscribe = async () => {
+  try {
+    const email = emailInputValue;
+    console.log("Email entered:", email);
+    
+    interface CheckoutResponse {
+      sessionId: string;
+    }
+  
+    const { data } = await axios.post<CheckoutResponse>(`/api/stripe/create-checkout-session`, { email });
+
+    console.log("data", data);
+    if(data.sessionId) {
+      const stripe = await getStripe();
+      console.log("stripe", stripe);
+      const response = await stripe?.redirectToCheckout({ sessionId: data.sessionId });
+      console.log("response", response);
+      return response;
+    }
+    else{
+      console.log("No sessionId returned from server");
+      throw new Error("No sessionId returned from server");
+      return;
+    }
+  } catch (error) {
+    console.error("Error redirecting to checkout:", error);
+    throw new Error("Failed to redirect to checkout");
+    return;
+  }
+};
   
   return (
     <section className="bg-gradient-to-br from-white via-white to-stone-50 py-24 px-4 relative overflow-hidden" id="pricing">
@@ -154,12 +197,40 @@ const PrePricing = () => {
                 ))}
               </div>
               
+              <div className="mb-4">
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1 text-left">
+                  Your Email Address
+                </label>
+                <motion.div 
+                  className="relative"
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.99 }}
+                >
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="name@company.com"
+                    required
+                    className="w-full px-4 py-3 border border-stone-200 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent outline-none transition-all"
+                    value={emailInputValue}
+                    onChange={(e) => setEmailInputValue(e.target.value)}
+                  />
+                  <div className="absolute inset-0 rounded-lg pointer-events-none border border-black/5 shadow-sm"></div>
+                </motion.div>
+                <p className="mt-1.5 text-xs text-stone-500 text-left">
+                  We'll use this to create your founding member account
+                </p>
+              </div>
+              
               <motion.button 
-                className="w-full py-4 rounded-lg font-semibold bg-black text-white hover:bg-black/90 transition-all"
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
+                className="w-full py-4 rounded-lg font-semibold bg-black text-white hover:bg-black/90 transition-all disabled:opacity-70 disabled:cursor-not-allowed"
+                whileHover={{ scale: emailInputValue ? 1.03 : 1 }}
+                whileTap={emailInputValue ? { scale: 0.98 } : {}}
+                onClick={handleSubscribe}
+                disabled={!emailInputValue.includes('@')}
               >
-                Secure Your Spot Now
+                {!emailInputValue.includes('@') ? 'Enter your email to continue' : 'Secure Your Spot Now'}
               </motion.button>
               
               <div className="mt-4 text-center text-stone-500 text-sm flex items-center justify-center gap-1">
@@ -208,4 +279,4 @@ const PrePricing = () => {
 }
 
 export default PrePricing
-                  
+

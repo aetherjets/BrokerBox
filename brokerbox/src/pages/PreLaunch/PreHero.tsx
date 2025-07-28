@@ -5,6 +5,13 @@ import { useRouter } from 'next/navigation';
 export default function PreHero() {
   const route = useRouter();
 
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="bg-gradient-to-br from-white to-stone-50 py-24 px-4 md:py-32 overflow-hidden relative">
       <motion.div 
@@ -75,7 +82,7 @@ export default function PreHero() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                onClick={() => route.push('/early-access')}
+                onClick={() => scrollToSection('pricing')}
               >
                 <span className="relative z-10">Secure Your Founding Spot</span>
                 <motion.div
