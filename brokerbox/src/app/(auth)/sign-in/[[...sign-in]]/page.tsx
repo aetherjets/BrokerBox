@@ -1,11 +1,11 @@
 
-import SignIn from '@/pages/SignIn/SignIn'
+import SignInPage from '@/pages/SignIn/SignInPage'
 import React from 'react'
 
 const page = () => {
   return (
     <div>
-      <SignIn />
+      <SignInPage />
     </div>
   )
 }

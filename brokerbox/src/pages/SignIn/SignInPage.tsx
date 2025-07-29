@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import ForgotPassword from './ForgotPassword'
 import Otp from './Otp'
-import supabase from '@/db/supabase'
+// import supabase from '@/db/supabase'
 import { useRouter } from 'next/navigation'
 // import { SignIn } from '@clerk/nextjs'
 
