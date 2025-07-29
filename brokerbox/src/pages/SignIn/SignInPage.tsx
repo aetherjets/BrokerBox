@@ -1,11 +1,14 @@
 "use client"
-import React, { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import React, { useState } from 'react'
+import { motion } from 'framer-motion'
 import Link from 'next/link'
 import ForgotPassword from './ForgotPassword'
 import Otp from './Otp'
+import supabase from '@/db/supabase'
+import { useRouter } from 'next/navigation'
+// import { SignIn } from '@clerk/nextjs'
 
-const SignIn = () => {
+const SignInPage = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -15,28 +18,29 @@ const SignIn = () => {
   })
   
   const [formState, setFormState] = useState<'signin' | 'forgotPassword' | 'verify2FA'>('signin')
-  const [animationComplete, setAnimationComplete] = useState(false)
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1,
-      transition: { 
-        when: "beforeChildren",
-        staggerChildren: 0.1,
-        duration: 0.3
-      } 
-    }
-  }
+  const router = useRouter();
+
+  // const containerVariants = {
+  //   hidden: { opacity: 0 },
+  //   visible: { 
+  //     opacity: 1,
+  //     transition: { 
+  //       when: "beforeChildren",
+  //       staggerChildren: 0.1,
+  //       duration: 0.3
+  //     } 
+  //   }
+  // }
   
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: { 
-      y: 0, 
-      opacity: 1,
-      transition: { type: "spring", stiffness: 300, damping: 24 }
-    }
-  }
+  // const itemVariants = {
+  //   hidden: { y: 20, opacity: 0 },
+  //   visible: { 
+  //     y: 0, 
+  //     opacity: 1,
+  //     transition: { type: "spring", stiffness: 300, damping: 24 }
+  //   }
+  // }
   
   const buttonVariants = {
     hidden: { scale: 0.95, opacity: 0 },
@@ -56,10 +60,6 @@ const SignIn = () => {
     },
     tap: { scale: 0.98 }
   }
-  
-  useEffect(() => {
-    setAnimationComplete(true)
-  }, [])
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target
@@ -83,37 +83,77 @@ const SignIn = () => {
     }))
   }
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setFormData(prev => ({ ...prev, isLoading: true }))
+
+    const {data, error} = await supabase.auth.signInWithPassword({
+      email: formData.email,
+      password: formData.password,
+    });
+
+    if(error){
+      setFormData(prev => ({ ...prev, isLoading: false }))
+      alert(error.message)
+      console.error('Login error:', error.message)
+      return
+    }
+
+    console.log('Login successful:', data);
+
+    localStorage.setItem("access_token", data.session.access_token);
+    router.push("/dashboard");
     
     // Simulate authentication
-    setTimeout(() => {
-      setFormData(prev => ({ ...prev, isLoading: false }))
+    // setTimeout(() => {
+    //   setFormData(prev => ({ ...prev, isLoading: false }))
       
-      // Simulate 2FA requirement (in a real app, this would be based on server response)
-      if (formData.email && formData.password) {
-        setFormState('verify2FA')
-      }
-    }, 1500)
+    //   // Simulate 2FA requirement (in a real app, this would be based on server response)
+    //   // if (formData.email && formData.password) {
+    //   //   setFormState('verify2FA')
+    //   // }
+    // }, 1500)
   }
   
-  const handleForgotPassword = (e: React.FormEvent) => {
+  const handleForgotPassword = async(e: React.FormEvent) => {
     e.preventDefault()
-    setFormData(prev => ({ ...prev, isLoading: true }))
     
-    // Simulate sending reset email
-    setTimeout(() => {
+    // Validate email before proceeding
+    if (!formData.email || !formData.email.includes('@')) {
+      alert('Please enter a valid email address')
+      return
+    }
+    
+    setFormData(prev => ({ ...prev, isLoading: true }))
+
+    try {
+      console.log('Attempting password reset for:', formData.email)
+      
+      // Use absolute URL including protocol, and ensure route matches your Supabase configuration
+      const { error } = await supabase.auth.resetPasswordForEmail(formData.email, {
+        redirectTo: window.location.origin + '/update-password', 
+      })
+
+      if (error) {
+        console.error('Password reset error:', error)
+        alert(`Failed to send reset email: ${error.message || 'Unknown error'}`)
+      } else {
+        alert('Password reset email sent! Please check your inbox.')
+        // Return to sign-in view after successful request
+        setFormState('signin')
+      }
+    } catch (err) {
+      console.error('Exception during password reset:', err)
+      alert('An unexpected error occurred. Please try again later.')
+    } finally {
       setFormData(prev => ({ ...prev, isLoading: false }))
-      alert('Password reset link has been sent to your email address.')
-      setFormState('signin')
-    }, 1500)
+    }
   }
   
   // New function to handle OTP verification
   const handleVerifyOtp = (code: string) => {
     setFormData(prev => ({ ...prev, isLoading: true }))
-    
+    console.log('Verifying OTP:', code);
     // Simulate verification
     setTimeout(() => {
       setFormData(prev => ({ ...prev, isLoading: false }))
@@ -157,7 +197,7 @@ const SignIn = () => {
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.4 }}
             >
-              Access your account to manage client deals, connect with lenders, and grow your business with the UK's only approved broker platform.
+              Access your account to manage client deals, connect with lenders, and grow your business with the UK&apos;s only approved broker platform.
             </motion.p>
             
             <motion.div
@@ -201,6 +241,7 @@ const SignIn = () => {
         </motion.div>
         
         {/* Right side - Form area */}
+        {/* <SignIn /> */}
         <motion.div 
           className="w-full lg:w-1/2 bg-white p-8 md:p-12"
           initial={{ x: 50, opacity: 0 }}
@@ -317,7 +358,7 @@ const SignIn = () => {
               
               <div className="mt-8 text-center">
                 <p className="text-sm text-stone-600">
-                  Don't have an account?{' '}
+                  Don&apos;t have an account?{' '}
                   <Link href="/sign-up" className="font-medium text-stone-900 hover:text-black underline underline-offset-2">
                     Sign up now
                   </Link>
@@ -348,6 +389,4 @@ const SignIn = () => {
   )
 }
 
-
-
-export default SignIn
+export default SignInPage
