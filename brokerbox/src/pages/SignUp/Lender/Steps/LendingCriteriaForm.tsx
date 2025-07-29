@@ -4,7 +4,7 @@ import { LenderDetails, containerVariants, itemVariants } from '../types'
 
 interface LendingCriteriaFormProps {
   lenderDetails: LenderDetails;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => void;
+  // handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => void;
   handleFinanceTypeChange: (type: string) => void;
   handleNextStep: () => void;
   handlePrevStep: () => void;
@@ -14,7 +14,7 @@ interface LendingCriteriaFormProps {
 
 const LendingCriteriaForm: React.FC<LendingCriteriaFormProps> = ({
   lenderDetails,
-  handleChange,
+  // handleChange,
   handleFinanceTypeChange,
   handleNextStep,
   handlePrevStep,

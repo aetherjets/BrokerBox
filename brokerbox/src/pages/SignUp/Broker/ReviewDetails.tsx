@@ -132,7 +132,7 @@ const ReviewDetails: React.FC<ReviewDetailsProps> = ({
             </h3>
             <dl className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2">
               <div>
-                <dt className="text-sm text-stone-600">Director's Name</dt>
+                <dt className="text-sm text-stone-600">Director&apos;s Name</dt>
                 <dd className="font-medium">{directorDetails.name}</dd>
               </div>
               <div>

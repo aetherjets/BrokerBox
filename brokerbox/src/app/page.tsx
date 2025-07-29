@@ -1,12 +1,12 @@
-import Hero from '@/pages/HomePage/Hero';
+// import Hero from '@/pages/HomePage/Hero';
 import Features from '@/pages/HomePage/Features';
 import HowItWorks from '@/pages/HomePage/HowItWorks';
-import CTA from '@/pages/HomePage/CTA';
-import Pricing from '@/pages/HomePage/Pricing';
-import Testimonial from '@/pages/HomePage/Testimonial';
+// import CTA from '@/pages/HomePage/CTA';
+// import Pricing from '@/pages/HomePage/Pricing';
+// import Testimonial from '@/pages/HomePage/Testimonial';
 import Contact from '@/pages/HomePage/Contact';
 import Navbar from '@/components/Navbar';
-import FAQ from '@/pages/HomePage/FAQ';
+// import FAQ from '@/pages/HomePage/FAQ';
 import Footer from '@/pages/HomePage/Footer';
 import PreHero from '@/pages/PreLaunch/PreHero';
 import PreCTA from '@/pages/PreLaunch/PreCTA';

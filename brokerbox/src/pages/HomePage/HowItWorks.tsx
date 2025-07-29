@@ -1,10 +1,10 @@
 "use client"
 import { motion } from 'framer-motion'
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 
 export default function HowItWorks() {
 
-  const router = useRouter();
+  // const router = useRouter();
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {

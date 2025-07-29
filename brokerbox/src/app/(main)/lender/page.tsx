@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useState } from 'react'
-import { motion } from 'framer-motion'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -11,8 +10,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Slider } from "@/components/ui/slider"
 import { Separator } from "@/components/ui/separator"
-import { CopyIcon, Link, PieChart, Percent, CheckCircle, Clock, BellRing, AlertCircle, Building2, Eye, Share2, PoundSterling } from 'lucide-react'
+import { CopyIcon, Percent, CheckCircle, Clock, Building2, Eye, Share2 } from 'lucide-react'
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import Image from 'next/image'
 
 // Mock lender offers data
 const mockLenderOffers = [
@@ -169,15 +169,14 @@ const completedDeals = [
 ];
 
 const LenderPage = () => {
-	const [selectedOffer, setSelectedOffer] = useState<any>(null);
+	const [selectedOffer, setSelectedOffer] = useState<null | typeof mockLenderOffers[number]>(null);
 	const [brokerFee, setBrokerFee] = useState<number>(2.5);
-	const [activeTab, setActiveTab] = useState("available");
 	const [isQuoteGenerated, setIsQuoteGenerated] = useState(false);
 	const [clientLink, setClientLink] = useState("");
-	
-	const handleSelectOffer = (offer: any) => {
+
+	const handleSelectOffer = (offer: typeof mockLenderOffers[number]) => {
 		setSelectedOffer(offer);
-		setBrokerFee(2.5); // Reset to default fee
+		setBrokerFee(2.5);
 		setIsQuoteGenerated(false);
 	};
 	
@@ -185,7 +184,7 @@ const LenderPage = () => {
 		// In a real application, this would call an API to generate a quote
 		setIsQuoteGenerated(true);
 		// Generate a mock client link
-		setClientLink(`https://brokerbox.com/client/quote/${selectedOffer.id}?fee=${brokerFee}`);
+		setClientLink(`https://brokerbox.com/client/quote/${selectedOffer?.id}?fee=${brokerFee}`);
 	};
 	
 	const handleCopyLink = () => {
@@ -209,7 +208,7 @@ const LenderPage = () => {
 				</div>
 			</div>
 			
-			<Tabs defaultValue="available" className="w-full" onValueChange={setActiveTab}>
+			<Tabs defaultValue="available" className="w-full">
 				<TabsList className="grid grid-cols-3 mb-8">
 					<TabsTrigger value="available" className="flex items-center gap-2">
 						<Building2 size={16} />
@@ -243,7 +242,13 @@ const LenderPage = () => {
 													</Badge>
 													<CardTitle className="text-lg">{offer.lender}</CardTitle>
 												</div>
-												<img src={offer.logo} alt={offer.lender} className="h-8 w-auto object-contain" />
+												<Image 
+												src={offer.logo} 
+												alt={offer.lender} 
+												className="h-8 w-auto object-contain"
+												width={200}
+												height={80} 
+												/>
 											</div>
 										</CardHeader>
 										<CardContent className="pb-3">

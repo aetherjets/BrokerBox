@@ -2,13 +2,13 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { UserType } from './SignUp'
+// import { UserType } from './SignUp'
 
-interface SuccessfulSubmissionProps {
-  userType: UserType
-}
+// interface SuccessfulSubmissionProps {
+//   userType: UserType
+// }
 
-const SuccessfulSubmission: React.FC<SuccessfulSubmissionProps> = ({ userType }) => {
+const SuccessfulSubmission: React.FC = () => {
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -80,7 +80,7 @@ const SuccessfulSubmission: React.FC<SuccessfulSubmissionProps> = ({ userType })
           className="text-stone-600 mb-6 max-w-lg mx-auto"
           variants={itemVariants}
         >
-          We've received your application and our team will review it shortly. You will receive an email notification once your account has been approved, which typically takes 1-2 business days.
+          We&apos;ve received your application and our team will review it shortly. You will receive an email notification once your account has been approved, which typically takes 1-2 business days.
         </motion.p>
         
         <motion.div 
@@ -105,7 +105,7 @@ const SuccessfulSubmission: React.FC<SuccessfulSubmissionProps> = ({ userType })
               <svg className="w-5 h-5 text-black mr-2 mt-0.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M8 12L10.5 14.5L16 9M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
-              <span>You'll receive an approval email with login details</span>
+              <span>You&apos;ll receive an approval email with login details</span>
             </li>
           </ul>
         </motion.div>

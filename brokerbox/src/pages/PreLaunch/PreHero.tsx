@@ -1,9 +1,10 @@
 "use client"
 import { motion } from 'framer-motion'
-import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+// import { useRouter } from 'next/navigation';
 
 export default function PreHero() {
-  const route = useRouter();
+  // const route = useRouter();
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -68,7 +69,7 @@ export default function PreHero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.6 }}
             >
-              Exclusive early access to the UK's premier broker platform. Lock in your founding status for just £640 and enjoy 12 months of full access, priority onboarding, and shape the future of lending.
+              Exclusive early access to the UK&apos;s premier broker platform. Lock in your founding status for just £640 and enjoy 12 months of full access, priority onboarding, and shape the future of lending.
             </motion.p>
             
             <motion.div 
@@ -175,10 +176,12 @@ export default function PreHero() {
                     <div className="w-3 h-3 rounded-full bg-green-400"></div>
                   </div>
                 </div>
-                <img 
+                <Image 
                   src="https://placehold.co/600x400/f8f8f8/e2e2e2.png?text=Broker+Box+Dashboard" 
                   alt="Broker Box Dashboard" 
                   className="w-full h-auto"
+                  width={600}
+                  height={400}
                 />
               </motion.div>
               

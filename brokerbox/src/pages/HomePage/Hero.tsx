@@ -1,5 +1,6 @@
 "use client"
 import { motion } from 'framer-motion'
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 export default function Hero() {
@@ -158,10 +159,12 @@ export default function Hero() {
                     <div className="w-3 h-3 rounded-full bg-green-400"></div>
                   </div>
                 </div>
-                <img 
+                <Image
                   src="https://placehold.co/600x400/f8f8f8/e2e2e2.png?text=Broker+Box+Dashboard" 
                   alt="Broker Box Dashboard" 
                   className="w-full h-auto"
+                  width={600}
+                  height={400}
                 />
               </motion.div>
               

@@ -40,11 +40,11 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navVariants = {
-    initial: { y: -100, opacity: 0 },
-    animate: { y: 0, opacity: 1 },
-    transition: { duration: 0.6, ease: "easeOut" },
-  };
+  // const navVariants = {
+  //   initial: { y: -100, opacity: 0 },
+  //   animate: { y: 0, opacity: 1 },
+  //   transition: { duration: 0.6, ease: "easeOut" },
+  // };
 
   const logoVariants = {
     hover: {
@@ -54,22 +54,22 @@ const Navbar = () => {
     },
   };
 
-  const linkVariants = {
-    initial: { y: -20, opacity: 0 },
-    animate: (index: any) => ({
-      y: 0,
-      opacity: 1,
-      transition: {
-        delay: index * 0.1,
-        duration: 0.5,
-        ease: "easeOut",
-      },
-    }),
-    hover: {
-      y: -2,
-      transition: { duration: 0.2 },
-    },
-  };
+  // const linkVariants = {
+  //   initial: { y: -20, opacity: 0 },
+  //   animate: (index: any) => ({
+  //     y: 0,
+  //     opacity: 1,
+  //     transition: {
+  //       delay: index * 0.1,
+  //       duration: 0.5,
+  //       ease: "easeOut",
+  //     },
+  //   }),
+  //   hover: {
+  //     y: -2,
+  //     transition: { duration: 0.2 },
+  //   },
+  // };
 
   const buttonVariants = {
     hover: {
@@ -99,7 +99,7 @@ const Navbar = () => {
 
   const mobileItemVariants = {
     closed: { x: -20, opacity: 0 },
-    open: (index: any) => ({
+    open: (index: number) => ({
       x: 0,
       opacity: 1,
       transition: {
@@ -166,7 +166,7 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-1">
             {navLinks.map((link, index) => (
               <motion.a
-                key={link.name}
+                key={index}
                 className="relative px-4 py-2 text-black font-medium group rounded-lg overflow-hidden cursor-pointer"
                 variants={{
                   initial: { opacity: 1 },

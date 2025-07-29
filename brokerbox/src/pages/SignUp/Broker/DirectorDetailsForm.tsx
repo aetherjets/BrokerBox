@@ -55,7 +55,7 @@ const DirectorDetailsForm: React.FC<DirectorDetailsFormProps> = ({
 
           <motion.div variants={itemVariants}>
             <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-              Director's Name*
+              Director&apos;s Name*
             </label>
             <input
               id="name"
@@ -70,7 +70,7 @@ const DirectorDetailsForm: React.FC<DirectorDetailsFormProps> = ({
 
           <motion.div variants={itemVariants}>
             <label htmlFor="mobile" className="block text-sm font-medium text-gray-700 mb-1">
-              Director's Mobile*
+              Director&apos;s Mobile*
             </label>
             <input
               id="mobile"
@@ -85,7 +85,7 @@ const DirectorDetailsForm: React.FC<DirectorDetailsFormProps> = ({
 
           <motion.div variants={itemVariants}>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-              Director's Email*
+              Director&apos;s Email*
             </label>
             <input
               id="email"
@@ -100,7 +100,7 @@ const DirectorDetailsForm: React.FC<DirectorDetailsFormProps> = ({
 
           <motion.div variants={itemVariants}>
             <label htmlFor="dateOfBirth" className="block text-sm font-medium text-gray-700 mb-1">
-              Director's Date of Birth*
+              Director&apos;s Date of Birth*
             </label>
             <input
               id="dateOfBirth"
@@ -116,7 +116,7 @@ const DirectorDetailsForm: React.FC<DirectorDetailsFormProps> = ({
 
         <motion.div className="mt-6" variants={itemVariants}>
           <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-1">
-            Director's Address*
+            Director&apos;s Address*
           </label>
           <textarea
             id="address"
@@ -133,7 +133,7 @@ const DirectorDetailsForm: React.FC<DirectorDetailsFormProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label htmlFor="drivingLicenseFront" className="block text-sm font-medium text-gray-700 mb-1">
-                Director's Driving License (Front)*
+                Director&apos;s Driving License (Front)*
               </label>
               <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-stone-300 border-dashed rounded-lg">
                 <div className="space-y-1 text-center">
@@ -165,7 +165,7 @@ const DirectorDetailsForm: React.FC<DirectorDetailsFormProps> = ({
 
             <div>
               <label htmlFor="drivingLicenseRear" className="block text-sm font-medium text-gray-700 mb-1">
-                Director's Driving License (Rear)*
+                Director&apos;s Driving License (Rear)*
               </label>
               <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-stone-300 border-dashed rounded-lg">
                 <div className="space-y-1 text-center">

@@ -1,9 +1,9 @@
 "use client"
 import { motion } from 'framer-motion'
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 
 export default function PreCTA() {
-  const router = useRouter();
+  // const router = useRouter();
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -66,7 +66,7 @@ export default function PreCTA() {
           transition={{ duration: 0.7, delay: 0.2 }}
         >
           Secure your competitive advantage with exclusive early access. 
-          Only 50 founding broker positions available - don't miss out.
+          Only 50 founding broker positions available - don&apos;t miss out.
         </motion.p>
         
         <motion.div 

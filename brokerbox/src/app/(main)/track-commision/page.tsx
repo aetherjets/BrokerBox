@@ -11,10 +11,8 @@ import {
 } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
 import {
   Popover,
-  PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
 import {
@@ -24,7 +22,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Separator } from "@/components/ui/separator";
 import {
   format,
   subDays,
@@ -34,7 +31,6 @@ import {
 } from "date-fns";
 import { CalendarIcon, Download, Percent } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
 
 // Recharts imports
 import {
@@ -49,9 +45,6 @@ import {
   Tooltip,
   Legend,
   Cell,
-  PieChart,
-  Pie,
-  Sector,
   ComposedChart,
 } from "recharts";
 
@@ -186,7 +179,6 @@ const CommissionTrackingPage = () => {
   });
   const [filterPeriod, setFilterPeriod] = useState("30days");
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
 
   // Filter commissions based on date range
   const filteredCommissions = commissionData.filter((commission) => {
@@ -197,15 +189,8 @@ const CommissionTrackingPage = () => {
     });
   });
 
-  // Further filter by search term
-  const searchFilteredCommissions = searchTerm
-    ? filteredCommissions.filter(
-        (commission) =>
-          commission.client.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          commission.lender.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          commission.product.toLowerCase().includes(searchTerm.toLowerCase())
-      )
-    : filteredCommissions;
+  // Since we've removed searchTerm, we don't need to further filter
+  const searchFilteredCommissions = filteredCommissions;
 
   // Calculate totals for the filtered data
   const totalCommission = searchFilteredCommissions.reduce(
@@ -225,8 +210,11 @@ const CommissionTrackingPage = () => {
     .filter((commission) => commission.status === "Pending")
     .reduce((sum, commission) => sum + commission.amount, 0);
 
-  // Handle date filter changes
-  const handleFilterChange = (value: any) => {
+  // Define a type for the filter period values
+  type FilterPeriod = "7days" | "30days" | "90days" | "thisMonth" | "lastMonth" | "custom";
+
+  // Handle date filter changes with proper typing
+  const handleFilterChange = (value: FilterPeriod) => {
     setFilterPeriod(value);
 
     const today = new Date();
@@ -267,8 +255,8 @@ const CommissionTrackingPage = () => {
     });
   };
 
-  // Custom tooltip formatter for charts
-  const formatCurrency = (value: any) => {
+  // Custom tooltip formatter for charts with proper typing
+  const formatCurrency = (value: number): string => {
     return `£${value.toLocaleString()}`;
   };
 
@@ -281,7 +269,7 @@ const CommissionTrackingPage = () => {
         staggerChildren: 0.07,
         when: "beforeChildren",
         duration: 0.4,
-        ease: "easeOut",
+        ease: [0.4, 0, 0.2, 1], // Using cubic bezier values for easeInOut
       },
     },
   };
@@ -304,7 +292,7 @@ const CommissionTrackingPage = () => {
       className="p-6 md:p-8 max-w-[1600px] mx-auto"
       initial="hidden"
       animate="visible"
-      variants={containerVariants as any}
+      variants={containerVariants}
     >
       {/* Header with Title and Filter Controls */}
       <motion.div variants={itemVariants} className="mb-8">
@@ -667,3 +655,4 @@ const CommissionTrackingPage = () => {
 };
 
 export default CommissionTrackingPage;
+

@@ -103,7 +103,7 @@ const SecuritySettings = () => {
                     </Button>
                   </div>
                   <p className="text-sm text-gray-500">
-                    Save this backup code in a safe place. You'll need it if you lose access to your authenticator app.
+                    Save this backup code in a safe place. You&apos;ll need it if you lose access to your authenticator app.
                   </p>
                 </div>
                 

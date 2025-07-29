@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 
 const Testimonial = () => {
   const [activeTestimonial, setActiveTestimonial] = useState(0)
@@ -131,16 +132,18 @@ const Testimonial = () => {
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.2 }}
                   >
-                    "{testimonials[activeTestimonial].quote}"
+                    &quot;{testimonials[activeTestimonial].quote}&quot;
                   </motion.blockquote>
                   
                   <div className="flex items-center justify-between">
                     <div className="flex items-center">
                       <div className="w-12 h-12 rounded-full overflow-hidden mr-4 border-2 border-stone-50 shadow-lg">
-                        <img 
+                        <Image
                           src={testimonials[activeTestimonial].image} 
                           alt={testimonials[activeTestimonial].name} 
                           className="w-full h-full object-cover"
+                          width={48}
+                          height={48}
                         />
                       </div>
                       <div>

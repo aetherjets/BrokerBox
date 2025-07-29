@@ -35,7 +35,7 @@ const ClientInfoStep = ({ clientInfo, setClientInfo }: ClientInfoStepProps) => {
     >
       <div className="text-center mb-10">
         <h3 className="text-xl font-medium text-slate-900">Client Information</h3>
-        <p className="text-slate-600 mt-2">Please enter your client's contact details</p>
+        <p className="text-slate-600 mt-2">Please enter your client&apos;s contact details</p>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">

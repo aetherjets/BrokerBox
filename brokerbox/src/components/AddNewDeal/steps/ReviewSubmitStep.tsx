@@ -225,7 +225,7 @@ const ReviewSubmitStep = ({
               className="h-4 w-4 rounded border-gray-300 text-gray-900 focus:ring-gray-500"
             />
             <Label htmlFor="agreeTerms" className="text-sm text-gray-700">
-              I confirm that I have permission to share this client's information and the details provided are accurate.
+              I confirm that I have permission to share this client&apos;s information and the details provided are accurate.
             </Label>
           </div>
         </div>

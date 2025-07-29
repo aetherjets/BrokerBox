@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { cn } from '@/lib/utils';
 import { 
   PoundSterling, CalendarDays, FileText, ListFilter, 
-  Package, Calculator, Truck, Clock, BarChart 
+  Package, Calculator, Clock, BarChart 
 } from 'lucide-react';
 
 interface LoanDetails {
@@ -31,6 +31,11 @@ interface InvoiceFinanceDetails {
   paymentTerms: string;
 }
 
+// Define StateWithStringFields type
+type StateWithStringFields = {
+  [key: string]: string ;
+};
+
 interface DealDetailsStepProps {
   financeType: 'loan' | 'asset' | 'invoice' | '';
   loanDetails: LoanDetails;
@@ -40,9 +45,9 @@ interface DealDetailsStepProps {
   invoiceDetails: InvoiceFinanceDetails;
   setInvoiceDetails: React.Dispatch<React.SetStateAction<InvoiceFinanceDetails>>;
   formatCurrency: (value: string) => string;
-  handleCurrencyChange: (
+  handleCurrencyChange: <T extends StateWithStringFields>(
     e: React.ChangeEvent<HTMLInputElement>, 
-    setter: Function, 
+    setter: React.Dispatch<React.SetStateAction<T>>, 
     field: string
   ) => void;
 }

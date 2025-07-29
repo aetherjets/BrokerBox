@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useRouter } from "next/navigation";
 import CompanyDetailsForm, { CompanyDetails } from "./CompanyDetailsForm";
 import DirectorDetailsForm, { DirectorDetails } from "./DirectorDetailsForm";
 import ReviewDetails from "./ReviewDetails";
@@ -13,7 +12,6 @@ interface BrokerOnboardingProps {
 type OnboardingStep = "companyDetails" | "directorDetails" | "review";
 
 const BrokerOnboarding: React.FC<BrokerOnboardingProps> = ({ onComplete }) => {
-  const router = useRouter();
   const [currentStep, setCurrentStep] =
     useState<OnboardingStep>("companyDetails");
   const [isLoading, setIsLoading] = useState(false);

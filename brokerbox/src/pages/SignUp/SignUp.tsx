@@ -74,7 +74,7 @@ const SignUp = () => {
                 className="text-white/80"
                 variants={itemVariants}
               >
-                Select the type of account you'd like to create
+                Select the type of account you&apos;d like to create
               </motion.p>
             </div>
 
@@ -97,7 +97,7 @@ const SignUp = () => {
                         <path d="M13.73 21C13.5542 21.3031 13.3019 21.5547 12.9982 21.7295C12.6946 21.9044 12.3504 21.9965 12 21.9965C11.6496 21.9965 11.3054 21.9044 11.0018 21.7295C10.6982 21.5547 10.4458 21.3031 10.27 21" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </div>
-                    <h2 className="text-xl font-bold mb-2">I'm a Broker</h2>
+                    <h2 className="text-xl font-bold mb-2">I&apos;m a Broker</h2>
                     <p className="text-stone-600">Create an account to connect with alternative lenders and streamline your deal submission process.</p>
                     
                     <div className="mt-6 flex items-center text-sm text-stone-600">
@@ -123,7 +123,7 @@ const SignUp = () => {
                         <path d="M3 7L12 13L21 7" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </div>
-                    <h2 className="text-xl font-bold mb-2">I'm a Lender</h2>
+                    <h2 className="text-xl font-bold mb-2">I&apos;m a Lender</h2>
                     <p className="text-stone-600">Join our network of alternative lenders to connect with qualified brokers and expand your lending portfolio.</p>
                     
                     <div className="mt-6 flex items-center text-sm text-stone-600">
@@ -167,7 +167,7 @@ const SignUp = () => {
         )}
 
         {signupStep === 'success' && (
-          <SuccessfulSubmission userType={userType} />
+          <SuccessfulSubmission />
         )}
       </AnimatePresence>
     </div>

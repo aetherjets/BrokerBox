@@ -74,7 +74,7 @@ const Contact = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              Let's Start Your <span className="block">Success Journey</span>
+              Let&apos;s Start Your <span className="block">Success Journey</span>
             </motion.h2>
             
             <motion.p 
@@ -123,7 +123,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg mb-1">Email us</h3>
-                  <p className="text-black/70 mb-2">We'll get back to you within 24 hours</p>
+                  <p className="text-black/70 mb-2">We&apos;ll get back to you within 24 hours</p>
                   <a href="mailto:hello@brokerbox.co.uk" className="text-black font-medium underline underline-offset-4 hover:text-stone-700 transition-colors">
                     hello@brokerbox.co.uk
                   </a>
@@ -175,7 +175,7 @@ const Contact = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                   </svg>
                   <h4 className="text-xl font-semibold mb-2">Thank you!</h4>
-                  <p>Your message has been sent successfully. We'll be in touch shortly.</p>
+                  <p>Your message has been sent successfully. We&apos;ll be in touch shortly.</p>
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit}>
@@ -267,7 +267,7 @@ const Contact = () => {
             
             <div className="mt-8 bg-stone-50 rounded-2xl p-6 border border-stone-100">
               <h4 className="font-semibold mb-2">Looking for customer support?</h4>
-              <p className="text-black/70 mb-4">Existing customers can reach our support team directly through the platform's help center.</p>
+              <p className="text-black/70 mb-4">Existing customers can reach our support team directly through the platform&apos;s help center.</p>
               <a href="#" className="inline-flex items-center font-medium text-black">
                 Go to Help Center
                 <svg width="16" height="16" className="ml-2" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">

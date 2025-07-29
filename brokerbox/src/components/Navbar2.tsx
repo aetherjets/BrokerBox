@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import Link from 'next/link'
-import { Bell, DollarSign, MessageSquare, Settings, User, Menu, X, Search } from 'lucide-react'
+import { Bell, DollarSign, MessageSquare, Settings, User, Menu, X } from 'lucide-react'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,8 +13,6 @@ import {
 } from './ui/dropdown-menu'
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 import { Button } from './ui/button'
-import { Input } from './ui/input'
-import { cn } from '@/lib/utils'
 import { useRouter } from 'next/navigation'
 
 const Navbar2 = () => {

@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -11,7 +11,7 @@ import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 import { Switch } from "@/components/ui/switch"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { User, Lock, Bell, Settings, MapPin, Mail, Phone, Building, Calendar, Edit, Shield, KeyRound, Upload } from 'lucide-react'
+import { User, Lock, Bell, Settings, MapPin, Mail, Phone, Building, Edit, Shield, KeyRound, Upload } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const ProfilePage = () => {

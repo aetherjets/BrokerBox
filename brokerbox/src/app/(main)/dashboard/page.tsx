@@ -26,14 +26,14 @@ const commissionData = [
   { name: 'Jul', commission: 8500 },
 ];
 
-const productPerformanceData = [
-  { name: 'Secured Loans', approval: 76 },
-  { name: 'Unsecured Loans', approval: 68 },
-  { name: 'Asset Finance', approval: 82 },
-  { name: 'Invoice Finance', approval: 74 },
-  { name: 'Property Finance', approval: 65 },
-  { name: 'Merchant Cash Advance', approval: 70 },
-];
+// const productPerformanceData = [
+//   { name: 'Secured Loans', approval: 76 },
+//   { name: 'Unsecured Loans', approval: 68 },
+//   { name: 'Asset Finance', approval: 82 },
+//   { name: 'Invoice Finance', approval: 74 },
+//   { name: 'Property Finance', approval: 65 },
+//   { name: 'Merchant Cash Advance', approval: 70 },
+// ];
 
 const recentDeals = [
   {
@@ -107,7 +107,7 @@ const DashboardPage = () => {
     : recentDeals.filter(deal => 
         deal.status.toLowerCase().replace(' ', '') === activeStatusFilter.toLowerCase());
   
-  const handleStatusFilter = (status: any) => {
+  const handleStatusFilter = (status: string) => {
     setIsLoading(true);
     setActiveStatusFilter(status);
     setTimeout(() => setIsLoading(false), 500);
@@ -404,12 +404,12 @@ const DashboardPage = () => {
             <CardContent className="h-96 flex flex-col p-4">
               <div className="flex-grow overflow-y-auto mb-4 space-y-4">
                 <div className="bg-gray-100 p-3 rounded-lg max-w-xs ml-auto">
-                  <p className="text-sm text-gray-800">Can you please provide additional information about the client's credit history?</p>
+                  <p className="text-sm text-gray-800">Can you please provide additional information about the client&apos;s credit history?</p>
                   <p className="text-xs text-gray-500 mt-1">You - 2 days ago</p>
                 </div>
                 
                 <div className="bg-gray-50 p-3 rounded-lg max-w-xs">
-                  <p className="text-sm text-gray-800">I've attached the requested documents. Let me know if you need anything else.</p>
+                  <p className="text-sm text-gray-800">I&apos;ve attached the requested documents. Let me know if you need anything else.</p>
                   <p className="text-xs text-gray-500 mt-1">Capital Bank - Yesterday</p>
                 </div>
               </div>

@@ -196,7 +196,7 @@ const PrePricing = () => {
                   <div className="absolute inset-0 rounded-lg pointer-events-none border border-black/5 shadow-sm"></div>
                 </motion.div>
                 <p className="mt-1.5 text-xs text-stone-500 text-left">
-                  We'll use this to create your founding member account
+                  We&apos;ll use this to create your founding member account
                 </p>
               </div>
               
@@ -236,7 +236,7 @@ const PrePricing = () => {
           <h3 className="text-2xl font-bold text-black mb-4">Still have questions?</h3>
           <p className="text-black/70 mb-6 max-w-2xl">
             Our team is available to answer any questions you might have about the founding broker program.
-            We're here to help you make an informed decision.
+            We&apos;re here to help you make an informed decision.
           </p>
           <motion.button 
             className="bg-white border border-stone-200 text-black py-3 px-8 rounded-lg font-semibold whitespace-nowrap"
@@ -248,7 +248,7 @@ const PrePricing = () => {
         </motion.div>
         
         <div className="mt-12 text-center text-stone-500 text-sm">
-          Limited to 50 founding brokers. Secure your spot before they're gone.
+          Limited to 50 founding brokers. Secure your spot before they&apos;re gone.
         </div>
       </div>
     </section>

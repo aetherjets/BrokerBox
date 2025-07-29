@@ -85,7 +85,7 @@ const AddNewDealForm = ({ onClose }: AddNewDealFormProps) => {
     assetDetails: null,
     additionalDocs: [],
   });
-  const [isUploading, setIsUploading] = useState(false);
+  // const [isUploading, setIsUploading] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [agreeTerms, setAgreeTerms] = useState(false);
 
@@ -124,11 +124,20 @@ const AddNewDealForm = ({ onClose }: AddNewDealFormProps) => {
     return digits.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   };
 
-  // Handle currency input change
-  const handleCurrencyChange = (e: React.ChangeEvent<HTMLInputElement>, setter: Function, field: string) => {
+  // Define generic type for state objects with string fields
+  type StateWithStringFields = {
+    [key: string]: string ;
+  };
+
+  // Handle currency input change with proper typing
+  const handleCurrencyChange = <T extends StateWithStringFields>(
+    e: React.ChangeEvent<HTMLInputElement>, 
+    setter: React.Dispatch<React.SetStateAction<T>>, 
+    field: string
+  ) => {
     const value = e.target.value.replace(/[£,]/g, '');
     
-    setter((prev: any) => ({
+    setter((prev) => ({
       ...prev,
       [field]: formatCurrency(value)
     }));
