@@ -261,18 +261,18 @@ const CommissionTrackingPage = () => {
   };
 
   // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.07,
-        when: "beforeChildren",
-        duration: 0.4,
-        ease: [0.4, 0, 0.2, 1], // Using cubic bezier values for easeInOut
-      },
-    },
-  };
+  // const containerVariants = {
+  //   hidden: { opacity: 0 },
+  //   visible: {
+  //     opacity: 1,
+  //     transition: {
+  //       staggerChildren: 0.07,
+  //       when: "beforeChildren",
+  //       duration: 0.4,
+  //       ease: "easeInOut", // Using a named easing function
+  //     },
+  //   },
+  // };
 
   const itemVariants = {
     hidden: { y: 30, opacity: 0 },
@@ -292,7 +292,6 @@ const CommissionTrackingPage = () => {
       className="p-6 md:p-8 max-w-[1600px] mx-auto"
       initial="hidden"
       animate="visible"
-      variants={containerVariants}
     >
       {/* Header with Title and Filter Controls */}
       <motion.div variants={itemVariants} className="mb-8">
@@ -534,7 +533,7 @@ const CommissionTrackingPage = () => {
                       />
                       <Tooltip
                         formatter={(value) => [
-                          `${formatCurrency(value)}`,
+                          `${formatCurrency(Number(value))}`,
                           "Commission",
                         ]}
                         contentStyle={{
@@ -577,7 +576,7 @@ const CommissionTrackingPage = () => {
                       />
                       <Tooltip
                         formatter={(value) => [
-                          `${formatCurrency(value)}`,
+                          `${formatCurrency(Number(value))}`,
                           "Commission",
                         ]}
                         contentStyle={{

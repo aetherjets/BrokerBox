@@ -5,7 +5,7 @@ import { LenderDetails, containerVariants, itemVariants } from '../types'
 interface ComplianceRiskFormProps {
   lenderDetails: LenderDetails;
   handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => void;
-  handleNestedChange: (category: string, field: string, value: string) => void;
+  handleNestedChange: (category: string, field: string, value: string | boolean) => void;
   handleNextStep: () => void;
   handlePrevStep: () => void;
   setLenderDetails: React.Dispatch<React.SetStateAction<LenderDetails>>;

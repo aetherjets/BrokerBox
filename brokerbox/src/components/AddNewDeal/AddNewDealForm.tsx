@@ -125,15 +125,13 @@ const AddNewDealForm = ({ onClose }: AddNewDealFormProps) => {
   };
 
   // Define generic type for state objects with string fields
-  type StateWithStringFields = {
-    [key: string]: string ;
-  };
+  type StateWithStringFields = LoanDetails | AssetDetails | InvoiceFinanceDetails;
 
   // Handle currency input change with proper typing
   const handleCurrencyChange = <T extends StateWithStringFields>(
     e: React.ChangeEvent<HTMLInputElement>, 
     setter: React.Dispatch<React.SetStateAction<T>>, 
-    field: string
+    field: keyof T
   ) => {
     const value = e.target.value.replace(/[£,]/g, '');
     

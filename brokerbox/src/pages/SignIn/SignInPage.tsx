@@ -87,21 +87,21 @@ const SignInPage = () => {
     e.preventDefault()
     setFormData(prev => ({ ...prev, isLoading: true }))
 
-    const {data, error} = await supabase.auth.signInWithPassword({
-      email: formData.email,
-      password: formData.password,
-    });
+    // const {data, error} = await supabase.auth.signInWithPassword({
+    //   email: formData.email,
+    //   password: formData.password,
+    // });
 
-    if(error){
-      setFormData(prev => ({ ...prev, isLoading: false }))
-      alert(error.message)
-      console.error('Login error:', error.message)
-      return
-    }
+    // if(error){
+    //   setFormData(prev => ({ ...prev, isLoading: false }))
+    //   alert(error.message)
+    //   console.error('Login error:', error.message)
+    //   return
+    // }
 
-    console.log('Login successful:', data);
+    console.log('Login successful:');
 
-    localStorage.setItem("access_token", data.session.access_token);
+    // localStorage.setItem("access_token", data.session.access_token);
     router.push("/dashboard");
     
     // Simulate authentication
@@ -130,18 +130,18 @@ const SignInPage = () => {
       console.log('Attempting password reset for:', formData.email)
       
       // Use absolute URL including protocol, and ensure route matches your Supabase configuration
-      const { error } = await supabase.auth.resetPasswordForEmail(formData.email, {
-        redirectTo: window.location.origin + '/update-password', 
-      })
+      // const { error } = await supabase.auth.resetPasswordForEmail(formData.email, {
+      //   redirectTo: window.location.origin + '/update-password', 
+      // })
 
-      if (error) {
-        console.error('Password reset error:', error)
-        alert(`Failed to send reset email: ${error.message || 'Unknown error'}`)
-      } else {
-        alert('Password reset email sent! Please check your inbox.')
-        // Return to sign-in view after successful request
-        setFormState('signin')
-      }
+      // if (error) {
+      //   console.error('Password reset error:', error)
+      //   alert(`Failed to send reset email: ${error.message || 'Unknown error'}`)
+      // } else {
+      //   alert('Password reset email sent! Please check your inbox.')
+      //   // Return to sign-in view after successful request
+      //   setFormState('signin')
+      // }
     } catch (err) {
       console.error('Exception during password reset:', err)
       alert('An unexpected error occurred. Please try again later.')

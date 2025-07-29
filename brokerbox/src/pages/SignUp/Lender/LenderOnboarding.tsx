@@ -206,7 +206,7 @@ const LenderOnboarding: React.FC<LenderOnboardingProps> = ({ onComplete }) => {
   };
 
   // Handle nested objects
-  const handleNestedChange = (category: string, field: string, value: string) => {
+  const handleNestedChange = (category: string, field: string, value: string | boolean) => {
     setLenderDetails(prev => ({
       ...prev,
       [category]: {

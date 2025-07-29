@@ -32,9 +32,9 @@ interface InvoiceFinanceDetails {
 }
 
 // Define StateWithStringFields type
-type StateWithStringFields = {
-  [key: string]: string ;
-};
+// type StateWithStringFields = {
+//   [key: string]: string ;
+// };
 
 interface DealDetailsStepProps {
   financeType: 'loan' | 'asset' | 'invoice' | '';
@@ -45,10 +45,10 @@ interface DealDetailsStepProps {
   invoiceDetails: InvoiceFinanceDetails;
   setInvoiceDetails: React.Dispatch<React.SetStateAction<InvoiceFinanceDetails>>;
   formatCurrency: (value: string) => string;
-  handleCurrencyChange: <T extends StateWithStringFields>(
+  handleCurrencyChange: <T extends LoanDetails | AssetDetails | InvoiceFinanceDetails>(
     e: React.ChangeEvent<HTMLInputElement>, 
     setter: React.Dispatch<React.SetStateAction<T>>, 
-    field: string
+    field: keyof T
   ) => void;
 }
 
