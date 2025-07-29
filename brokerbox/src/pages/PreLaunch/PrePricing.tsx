@@ -1,16 +1,7 @@
 "use client"
 import React from 'react'
 import { motion } from 'framer-motion'
-import axios from 'axios';
-import { loadStripe } from '@stripe/stripe-js';
 
-let stripePromise: ReturnType<typeof loadStripe> | null = null;
-const getStripe = () => {
-  if (!stripePromise) {
-    stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
-  }
-  return stripePromise;
-};
 
 const PrePricing = () => {
   const [emailInputValue, setEmailInputValue] = React.useState("");
@@ -28,35 +19,21 @@ const PrePricing = () => {
 
 
   const handleSubscribe = async () => {
-  try {
-    const email = emailInputValue;
-    console.log("Email entered:", email);
-    
-    interface CheckoutResponse {
-      sessionId: string;
-    }
-  
-    const { data } = await axios.post<CheckoutResponse>(`/api/stripe/create-checkout-session`, { email });
+    // try {
+    //   const email = emailInputValue;
+    //   console.log("Email entered:", email);
+      
 
-    console.log("data", data);
-    if(data.sessionId) {
-      const stripe = await getStripe();
-      console.log("stripe", stripe);
-      const response = await stripe?.redirectToCheckout({ sessionId: data.sessionId });
-      console.log("response", response);
-      return response;
-    }
-    else{
-      console.log("No sessionId returned from server");
-      throw new Error("No sessionId returned from server");
-      return;
-    }
-  } catch (error) {
-    console.error("Error redirecting to checkout:", error);
-    throw new Error("Failed to redirect to checkout");
-    return;
-  }
-};
+    //   const STRIPE_PAYMENT_LINK = process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK;
+      
+    //   const paymentLinkWithEmail = `${STRIPE_PAYMENT_LINK}?prefilled_email=${encodeURIComponent(email)}`;
+      
+    //   window.location.href = paymentLinkWithEmail;
+    // } catch (error) {
+    //   console.error("Error redirecting to payment link:", error);
+    // }
+    console.log("Value entered:", emailInputValue);
+  };
   
   return (
     <section className="bg-gradient-to-br from-white via-white to-stone-50 py-24 px-4 relative overflow-hidden" id="pricing">
