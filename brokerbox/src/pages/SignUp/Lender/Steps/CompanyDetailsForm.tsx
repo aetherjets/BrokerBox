@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import {containerVariants, itemVariants } from '../types'
+import { containerVariants, itemVariants } from '@/lib/types';
 
 interface LenderDetails {
   tradingName: string;

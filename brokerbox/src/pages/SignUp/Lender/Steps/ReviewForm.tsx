@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { LenderDetails, OnboardingStep, containerVariants, itemVariants } from '../types'
+import { LenderDetails,OnboardingStep, containerVariants, itemVariants } from '@/lib/types';
 
 interface ReviewFormProps {
   lenderDetails: LenderDetails;

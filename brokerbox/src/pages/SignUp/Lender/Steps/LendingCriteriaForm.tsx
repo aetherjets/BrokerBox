@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { LenderDetails, containerVariants, itemVariants } from '../types'
+import { LenderDetails, containerVariants, itemVariants } from '@/lib/types';
 
 interface LendingCriteriaFormProps {
   lenderDetails: LenderDetails;
