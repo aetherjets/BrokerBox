@@ -49,7 +49,7 @@ const LendingCriteriaForm: React.FC<LendingCriteriaFormProps> = ({
                 id="fca-only"
                 name="acceptsOnlyFcaApproved"
                 type="radio"
-                checked={lenderDetails.acceptsOnlyFcaApproved}
+                checked={!!lenderDetails?.acceptsOnlyFcaApproved}
                 onChange={() => setLenderDetails(prev => ({ ...prev, acceptsOnlyFcaApproved: true }))}
                 className="h-4 w-4 text-black border-stone-300"
                 required
@@ -63,7 +63,7 @@ const LendingCriteriaForm: React.FC<LendingCriteriaFormProps> = ({
                 id="all-vetted"
                 name="acceptsOnlyFcaApproved"
                 type="radio"
-                checked={!lenderDetails.acceptsOnlyFcaApproved}
+                checked={lenderDetails?.acceptsOnlyFcaApproved === false}
                 onChange={() => setLenderDetails(prev => ({ ...prev, acceptsOnlyFcaApproved: false }))}
                 className="h-4 w-4 text-black border-stone-300"
               />
@@ -85,7 +85,7 @@ const LendingCriteriaForm: React.FC<LendingCriteriaFormProps> = ({
                 <input
                   id={`finance-${type}`}
                   type="checkbox"
-                  checked={lenderDetails.financeTypes.includes(type)}
+                  checked={!!lenderDetails?.financeTypes?.includes(type)}
                   onChange={() => handleFinanceTypeChange(type)}
                   className="h-4 w-4 text-black border-stone-300 rounded"
                 />
@@ -95,7 +95,7 @@ const LendingCriteriaForm: React.FC<LendingCriteriaFormProps> = ({
               </div>
             ))}
           </div>
-          {lenderDetails.financeTypes.length === 0 && (
+          {(!lenderDetails?.financeTypes || lenderDetails.financeTypes.length === 0) && (
             <p className="mt-2 text-xs text-red-500">Please select at least one finance type</p>
           )}
         </motion.div>
@@ -118,7 +118,7 @@ const LendingCriteriaForm: React.FC<LendingCriteriaFormProps> = ({
             className="px-6 py-3 bg-black text-white rounded-lg font-medium hover:bg-black/90 transition-colors"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            disabled={lenderDetails.financeTypes.length === 0}
+            disabled={!lenderDetails?.financeTypes || lenderDetails.financeTypes.length === 0}
           >
             Next Step
             <svg className="inline-block ml-2 w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -92,7 +92,7 @@ const CompanyDetailsForm: React.FC<CompanyDetailsFormProps> = ({
               className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
             >
               <option value="">Select company size</option>
-              {companySizeOptions.map((size) => (
+              {(companySizeOptions ?? []).map((size) => (
                 <option key={size} value={size}>{size}</option>
               ))}
             </select>
