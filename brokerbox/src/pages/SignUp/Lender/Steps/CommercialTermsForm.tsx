@@ -67,7 +67,7 @@ const CommercialTermsForm: React.FC<CommercialTermsFormProps> = ({
             className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
           >
             <option value="">Select payment method</option>
-            {(payoutMethodOptions ?? []).map(method => (
+            {(payoutMethodOptions ?? [])?.map(method => (
               <option key={method} value={method}>{method}</option>
             ))}
           </select>

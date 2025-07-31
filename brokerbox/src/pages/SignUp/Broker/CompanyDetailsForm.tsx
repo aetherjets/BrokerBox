@@ -65,7 +65,7 @@ const CompanyDetailsForm: React.FC<CompanyDetailsFormProps> = ({
               name="tradingName"
               type="text"
               required
-              value={companyDetails.tradingName}
+              value={companyDetails?.tradingName}
               onChange={handleCompanyChange}
               className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
             />
@@ -80,7 +80,7 @@ const CompanyDetailsForm: React.FC<CompanyDetailsFormProps> = ({
               name="yearsTrading"
               type="text"
               required
-              value={companyDetails.yearsTrading}
+              value={companyDetails?.yearsTrading}
               onChange={handleCompanyChange}
               className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
             />
@@ -94,12 +94,12 @@ const CompanyDetailsForm: React.FC<CompanyDetailsFormProps> = ({
               id="companySize"
               name="companySize"
               required
-              value={companyDetails.companySize}
+              value={companyDetails?.companySize}
               onChange={handleCompanyChange}
               className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
             >
               <option value="">Select company size</option>
-              {companySizeOptions.map((size) => (
+              {companySizeOptions?.map((size) => (
                 <option key={size} value={size}>{size}</option>
               ))}
             </select>
@@ -114,7 +114,7 @@ const CompanyDetailsForm: React.FC<CompanyDetailsFormProps> = ({
               name="companyName"
               type="text"
               required
-              value={companyDetails.companyName}
+              value={companyDetails?.companyName}
               onChange={handleCompanyChange}
               className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
             />
@@ -129,7 +129,7 @@ const CompanyDetailsForm: React.FC<CompanyDetailsFormProps> = ({
               name="companiesHouseNumber"
               type="text"
               required
-              value={companyDetails.companiesHouseNumber}
+              value={companyDetails?.companiesHouseNumber}
               onChange={handleCompanyChange}
               className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
             />
@@ -144,7 +144,7 @@ const CompanyDetailsForm: React.FC<CompanyDetailsFormProps> = ({
               name="companyTelephone"
               type="tel"
               required
-              value={companyDetails.companyTelephone}
+              value={companyDetails?.companyTelephone}
               onChange={handleCompanyChange}
               className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
             />
@@ -158,7 +158,7 @@ const CompanyDetailsForm: React.FC<CompanyDetailsFormProps> = ({
               id="fcaNumber"
               name="fcaNumber"
               type="text"
-              value={companyDetails.fcaNumber}
+              value={companyDetails?.fcaNumber}
               onChange={handleCompanyChange}
               className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
             />
@@ -174,7 +174,7 @@ const CompanyDetailsForm: React.FC<CompanyDetailsFormProps> = ({
             name="companyAddress"
             required
             rows={3}
-            value={companyDetails.companyAddress}
+            value={companyDetails?.companyAddress}
             onChange={handleCompanyChange}
             className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
           />
@@ -185,13 +185,13 @@ const CompanyDetailsForm: React.FC<CompanyDetailsFormProps> = ({
             Type of Finance You Broker* (select all that apply)
           </label>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-            {financeTypes.map((type) => (
+            {financeTypes?.map((type) => (
               <div key={type} className="flex items-center">
                 <input
                   id={`finance-${type}`}
                   name={`finance-${type}`}
                   type="checkbox"
-                  checked={companyDetails.financeTypes.includes(type)}
+                  checked={companyDetails?.financeTypes.includes(type)}
                   onChange={() => handleFinanceTypeChange(type)}
                   className="h-4 w-4 text-black border-stone-300 rounded"
                 />

@@ -80,7 +80,7 @@ const LendingCriteriaForm: React.FC<LendingCriteriaFormProps> = ({
             Type of Finance Offered* (select all that apply)
           </label>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {financeTypes.map((type) => (
+            {financeTypes?.map((type) => (
               <div key={type} className="flex items-center">
                 <input
                   id={`finance-${type}`}

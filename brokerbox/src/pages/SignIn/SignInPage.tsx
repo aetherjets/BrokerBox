@@ -119,7 +119,7 @@ const SignInPage = () => {
     e.preventDefault()
     
     // Validate email before proceeding
-    if (!formData.email || !formData.email.includes('@')) {
+    if (!formData?.email || !formData?.email.includes('@')) {
       alert('Please enter a valid email address')
       return
     }
@@ -127,7 +127,7 @@ const SignInPage = () => {
     setFormData(prev => ({ ...prev, isLoading: true }))
 
     try {
-      console.log('Attempting password reset for:', formData.email)
+      console.log('Attempting password reset for:', formData?.email)
       
       // Use absolute URL including protocol, and ensure route matches your Supabase configuration
       // const { error } = await supabase.auth.resetPasswordForEmail(formData.email, {
@@ -271,7 +271,7 @@ const SignInPage = () => {
                     type="email"
                     autoComplete="email"
                     required
-                    value={formData.email}
+                    value={formData?.email}
                     onChange={handleChange}
                     className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-black focus:outline-none transition-all"
                     placeholder="name@company.com"
@@ -286,10 +286,10 @@ const SignInPage = () => {
                     <input
                       id="password"
                       name="password"
-                      type={formData.showPassword ? "text" : "password"}
+                      type={formData?.showPassword ? "text" : "password"}
                       autoComplete="current-password"
                       required
-                      value={formData.password}
+                      value={formData?.password}
                       onChange={handleChange}
                       className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-black focus:outline-none transition-all"
                       placeholder="••••••••"
@@ -299,7 +299,7 @@ const SignInPage = () => {
                       onClick={togglePasswordVisibility}
                       className="absolute inset-y-0 right-0 pr-3 flex items-center text-stone-600"
                     >
-                      {formData.showPassword ? (
+                      {formData?.showPassword ? (
                         <svg width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M3.528 9.191C5.077 6.575 8.114 3.5 12 3.5c3.886 0 6.923 3.075 8.473 5.69.562.946.843 1.42.843 1.81 0 .39-.28.864-.843 1.81-1.55 2.615-4.587 5.69-8.473 5.69-3.886 0-6.923-3.075-8.473-5.69C2.966 11.863 2.685 11.39 2.685 11c0-.39.28-.864.843-1.81z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                           <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -319,7 +319,7 @@ const SignInPage = () => {
                       id="remember"
                       name="remember"
                       type="checkbox"
-                      checked={formData.remember}
+                      checked={formData?.remember}
                       onChange={handleChange}
                       className="h-4 w-4 text-black border-stone-300 rounded focus:ring-0"
                     />
@@ -342,12 +342,12 @@ const SignInPage = () => {
                   className="w-full py-3 bg-black text-white rounded-lg font-semibold relative overflow-hidden"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  disabled={formData.isLoading}
+                  disabled={formData?.isLoading}
                   variants={buttonVariants}
                   initial="hidden"
                   animate="visible"
                 >
-                  {formData.isLoading ? (
+                  {formData?.isLoading ? (
                     <svg className="animate-spin h-5 w-5 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -380,7 +380,7 @@ const SignInPage = () => {
             <Otp
               onVerify={handleVerifyOtp} 
               onCancel={() => setFormState('signin')}
-              isLoading={formData.isLoading}
+              isLoading={formData?.isLoading}
             />
           )}
         </motion.div>

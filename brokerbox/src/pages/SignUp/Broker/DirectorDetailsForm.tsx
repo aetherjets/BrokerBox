@@ -62,7 +62,7 @@ const DirectorDetailsForm: React.FC<DirectorDetailsFormProps> = ({
               name="name"
               type="text"
               required
-              value={directorDetails.name}
+              value={directorDetails?.name}
               onChange={handleDirectorChange}
               className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
             />
@@ -77,7 +77,7 @@ const DirectorDetailsForm: React.FC<DirectorDetailsFormProps> = ({
               name="mobile"
               type="tel"
               required
-              value={directorDetails.mobile}
+              value={directorDetails?.mobile}
               onChange={handleDirectorChange}
               className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
             />
@@ -92,7 +92,7 @@ const DirectorDetailsForm: React.FC<DirectorDetailsFormProps> = ({
               name="email"
               type="email"
               required
-              value={directorDetails.email}
+              value={directorDetails?.email}
               onChange={handleDirectorChange}
               className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
             />
@@ -107,7 +107,7 @@ const DirectorDetailsForm: React.FC<DirectorDetailsFormProps> = ({
               name="dateOfBirth"
               type="date"
               required
-              value={directorDetails.dateOfBirth}
+              value={directorDetails?.dateOfBirth}
               onChange={handleDirectorChange}
               className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
             />
@@ -123,7 +123,7 @@ const DirectorDetailsForm: React.FC<DirectorDetailsFormProps> = ({
             name="address"
             required
             rows={3}
-            value={directorDetails.address}
+            value={directorDetails?.address}
             onChange={handleDirectorChange}
             className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
           />
@@ -155,8 +155,8 @@ const DirectorDetailsForm: React.FC<DirectorDetailsFormProps> = ({
                     </label>
                   </div>
                   <p className="text-xs text-stone-500">
-                    {directorDetails.drivingLicenseFront 
-                      ? directorDetails.drivingLicenseFront.name 
+                    {directorDetails?.drivingLicenseFront 
+                      ? directorDetails?.drivingLicenseFront.name 
                       : 'PNG, JPG up to 5MB'}
                   </p>
                 </div>
@@ -187,8 +187,8 @@ const DirectorDetailsForm: React.FC<DirectorDetailsFormProps> = ({
                     </label>
                   </div>
                   <p className="text-xs text-stone-500">
-                    {directorDetails.drivingLicenseRear?.name
-                      ? directorDetails.drivingLicenseRear.name
+                    {directorDetails?.drivingLicenseRear?.name
+                      ? directorDetails?.drivingLicenseRear.name
                       : 'PNG, JPG up to 5MB'}
                   </p>
                 </div>

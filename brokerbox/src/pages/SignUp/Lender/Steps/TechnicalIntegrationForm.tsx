@@ -42,14 +42,14 @@ const TechnicalIntegrationForm: React.FC<TechnicalIntegrationFormProps> = ({
             <input
               type="checkbox"
               name="offersApi"
-              checked={lenderDetails.offersApi}
+              checked={lenderDetails?.offersApi}
               onChange={handleChange}
               className="h-4 w-4 text-black border-stone-300 rounded mr-2"
             />
             Do you offer an API for instant quote generation?
           </label>
           
-          {lenderDetails.offersApi && (
+          {lenderDetails?.offersApi && (
             <div className="pl-6 mt-4 space-y-4 border-l-2 border-stone-200">
               {/* API Documentation URL */}
               <div>
@@ -60,7 +60,7 @@ const TechnicalIntegrationForm: React.FC<TechnicalIntegrationFormProps> = ({
                   id="apiDocUrl"
                   name="apiDocUrl"
                   type="text"
-                  value={lenderDetails.apiDocUrl}
+                  value={lenderDetails?.apiDocUrl}
                   onChange={handleChange}
                   className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
                   placeholder="https://example.com/api-docs"
@@ -76,7 +76,7 @@ const TechnicalIntegrationForm: React.FC<TechnicalIntegrationFormProps> = ({
                   id="apiKeyProcess"
                   name="apiKeyProcess"
                   rows={2}
-                  value={lenderDetails.apiKeyProcess}
+                  value={lenderDetails?.apiKeyProcess}
                   onChange={handleChange}
                   className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
                   placeholder="Describe how brokers can obtain API keys or tokens"
@@ -89,7 +89,7 @@ const TechnicalIntegrationForm: React.FC<TechnicalIntegrationFormProps> = ({
                   Supported data points (select all that apply)
                 </label>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                  {dataPointOptions.map((point) => (
+                  {dataPointOptions?.map((point) => (
                     <div key={point} className="flex items-center">
                       <input
                         id={`dataPoint-${point}`}
@@ -115,7 +115,7 @@ const TechnicalIntegrationForm: React.FC<TechnicalIntegrationFormProps> = ({
             <input
               type="checkbox"
               name="supportsWebhooks"
-              checked={lenderDetails.supportsWebhooks}
+              checked={lenderDetails?.supportsWebhooks}
               onChange={handleChange}
               className="h-4 w-4 text-black border-stone-300 rounded mr-2"
             />
@@ -129,7 +129,7 @@ const TechnicalIntegrationForm: React.FC<TechnicalIntegrationFormProps> = ({
             <input
               type="checkbox"
               name="offersSandbox"
-              checked={lenderDetails.offersSandbox}
+              checked={lenderDetails?.offersSandbox}
               onChange={handleChange}
               className="h-4 w-4 text-black border-stone-300 rounded mr-2"
             />

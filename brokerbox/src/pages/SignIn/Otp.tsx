@@ -134,7 +134,7 @@ const Otp = ({ onVerify, onCancel, isLoading }: OtpProps) => {
             Verification Code
           </label>
           <div className="flex justify-between gap-2">
-            {verificationCode.map((digit, index) => (
+            {verificationCode?.map((digit, index) => (
               <motion.input
                 key={index}
                 id={`code-${index}`}
