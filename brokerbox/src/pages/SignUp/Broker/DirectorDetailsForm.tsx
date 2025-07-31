@@ -187,8 +187,8 @@ const DirectorDetailsForm: React.FC<DirectorDetailsFormProps> = ({
                     </label>
                   </div>
                   <p className="text-xs text-stone-500">
-                    {directorDetails.drivingLicenseRear 
-                      ? directorDetails.drivingLicenseRear.name 
+                    {directorDetails.drivingLicenseRear && "name" in directorDetails.drivingLicenseRear
+                      ? directorDetails.drivingLicenseRear.name
                       : 'PNG, JPG up to 5MB'}
                   </p>
                 </div>

@@ -61,31 +61,31 @@ const ReviewForm: React.FC<ReviewFormProps> = ({
           <dl className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 text-sm">
             <div>
               <dt className="text-stone-500">Trading Name</dt>
-              <dd>{lenderDetails.tradingName}</dd>
+              <dd>{lenderDetails?.tradingName ?? ""}</dd>
             </div>
             <div>
               <dt className="text-stone-500">Company Name</dt>
-              <dd>{lenderDetails.companyName}</dd>
+              <dd>{lenderDetails?.companyName ?? ""}</dd>
             </div>
             <div>
               <dt className="text-stone-500">Company Size</dt>
-              <dd>{lenderDetails.companySize}</dd>
+              <dd>{lenderDetails?.companySize ?? ""}</dd>
             </div>
             <div>
               <dt className="text-stone-500">Companies House Number</dt>
-              <dd>{lenderDetails.companiesHouseNumber}</dd>
+              <dd>{lenderDetails?.companiesHouseNumber ?? ""}</dd>
             </div>
             <div>
               <dt className="text-stone-500">Company Telephone</dt>
-              <dd>{lenderDetails.companyTelephone}</dd>
+              <dd>{lenderDetails?.companyTelephone ?? ""}</dd>
             </div>
             <div>
               <dt className="text-stone-500">FCA Registration Number</dt>
-              <dd>{lenderDetails.fcaNumber}</dd>
+              <dd>{lenderDetails?.fcaNumber ?? ""}</dd>
             </div>
             <div className="md:col-span-2">
               <dt className="text-stone-500">Company Address</dt>
-              <dd>{lenderDetails.companyAddress}</dd>
+              <dd>{lenderDetails?.companyAddress ?? ""}</dd>
             </div>
           </dl>
         </motion.div>
@@ -108,11 +108,11 @@ const ReviewForm: React.FC<ReviewFormProps> = ({
           <dl className="grid grid-cols-1 gap-y-2 text-sm">
             <div>
               <dt className="text-stone-500">Broker Acceptance</dt>
-              <dd>{lenderDetails.acceptsOnlyFcaApproved ? 'FCA-approved brokers only' : 'All vetted introducers (including non-FCA)'}</dd>
+              <dd>{lenderDetails?.acceptsOnlyFcaApproved ? 'FCA-approved brokers only' : 'All vetted introducers (including non-FCA)'}</dd>
             </div>
             <div>
               <dt className="text-stone-500">Finance Types Offered</dt>
-              <dd>{lenderDetails.financeTypes.join(', ')}</dd>
+              <dd>{lenderDetails?.financeTypes?.join(', ') ?? ""}</dd>
             </div>
           </dl>
         </motion.div>
@@ -135,31 +135,31 @@ const ReviewForm: React.FC<ReviewFormProps> = ({
           <dl className="grid grid-cols-1 gap-y-2 text-sm">
             <div>
               <dt className="text-stone-500">API for Instant Quotes</dt>
-              <dd>{lenderDetails.offersApi ? 'Yes' : 'No'}</dd>
+              <dd>{lenderDetails?.offersApi ? 'Yes' : 'No'}</dd>
             </div>
-            {lenderDetails.offersApi && (
+            {lenderDetails?.offersApi && (
               <>
                 <div>
                   <dt className="text-stone-500">API Documentation URL</dt>
-                  <dd>{lenderDetails.apiDocUrl}</dd>
+                  <dd>{lenderDetails?.apiDocUrl ?? ""}</dd>
                 </div>
                 <div>
                   <dt className="text-stone-500">API Key/Token Process</dt>
-                  <dd>{lenderDetails.apiKeyProcess}</dd>
+                  <dd>{lenderDetails?.apiKeyProcess ?? ""}</dd>
                 </div>
                 <div>
                   <dt className="text-stone-500">Supported Data Points</dt>
-                  <dd>{lenderDetails.supportedDataPoints.join(', ')}</dd>
+                  <dd>{lenderDetails?.supportedDataPoints?.join(', ') ?? ""}</dd>
                 </div>
               </>
             )}
             <div>
               <dt className="text-stone-500">Supports Webhooks</dt>
-              <dd>{lenderDetails.supportsWebhooks ? 'Yes' : 'No'}</dd>
+              <dd>{lenderDetails?.supportsWebhooks ? 'Yes' : 'No'}</dd>
             </div>
             <div>
               <dt className="text-stone-500">Offers Sandbox Access</dt>
-              <dd>{lenderDetails.offersSandbox ? 'Yes' : 'No'}</dd>
+              <dd>{lenderDetails?.offersSandbox ? 'Yes' : 'No'}</dd>
             </div>
           </dl>
         </motion.div>
@@ -182,33 +182,33 @@ const ReviewForm: React.FC<ReviewFormProps> = ({
           <dl className="grid grid-cols-1 gap-y-2 text-sm">
             <div>
               <dt className="text-stone-500">FCA Registration Required</dt>
-              <dd>{lenderDetails.fcaRegRequired ? 'Yes' : 'No'}</dd>
+              <dd>{lenderDetails?.fcaRegRequired ? 'Yes' : 'No'}</dd>
             </div>
             <div>
               <dt className="text-stone-500">Specific Documentation Required</dt>
-              <dd>{lenderDetails.specificDocumentation || 'None specified'}</dd>
+              <dd>{lenderDetails?.specificDocumentation || 'None specified'}</dd>
             </div>
             <div>
               <dt className="text-stone-500">AML/KYC Documents Required</dt>
               <dd>
                 <ul className="list-disc list-inside">
-                  {lenderDetails.amlKycDocuments.idVerification && <li>ID Verification</li>}
-                  {lenderDetails.amlKycDocuments.passportDrivingLicense && <li>Passport/Driving License</li>}
-                  {lenderDetails.amlKycDocuments.proofOfAddress && <li>Proof of Address</li>}
-                  {lenderDetails.amlKycDocuments.businessBankStatements && <li>Business Bank Statements</li>}
-                  {lenderDetails.amlKycDocuments.filedAccounts && <li>Filed Accounts</li>}
-                  {lenderDetails.amlKycDocuments.openBanking && <li>Open Banking</li>}
-                  {lenderDetails.amlKycDocuments.otherDocuments && <li>Other: {lenderDetails.amlKycDocuments.otherDocuments}</li>}
+                  {lenderDetails?.amlKycDocuments?.idVerification && <li>ID Verification</li>}
+                  {lenderDetails?.amlKycDocuments?.passportDrivingLicense && <li>Passport/Driving License</li>}
+                  {lenderDetails?.amlKycDocuments?.proofOfAddress && <li>Proof of Address</li>}
+                  {lenderDetails?.amlKycDocuments?.businessBankStatements && <li>Business Bank Statements</li>}
+                  {lenderDetails?.amlKycDocuments?.filedAccounts && <li>Filed Accounts</li>}
+                  {lenderDetails?.amlKycDocuments?.openBanking && <li>Open Banking</li>}
+                  {lenderDetails?.amlKycDocuments?.otherDocuments && <li>Other: {lenderDetails.amlKycDocuments.otherDocuments}</li>}
                 </ul>
               </dd>
             </div>
             <div>
               <dt className="text-stone-500">Affordability/Risk Checks</dt>
-              <dd>{lenderDetails.runsOwnAffordabilityChecks ? 'Own checks' : 'Broker screening'}</dd>
+              <dd>{lenderDetails?.runsOwnAffordabilityChecks ? 'Own checks' : 'Broker screening'}</dd>
             </div>
             <div>
               <dt className="text-stone-500">Co-Brokered Deals</dt>
-              <dd>{lenderDetails.acceptsCoBrokeredDeals ? 'Accepted' : 'Not accepted'}</dd>
+              <dd>{lenderDetails?.acceptsCoBrokeredDeals ? 'Accepted' : 'Not accepted'}</dd>
             </div>
           </dl>
         </motion.div>
@@ -231,15 +231,15 @@ const ReviewForm: React.FC<ReviewFormProps> = ({
           <dl className="grid grid-cols-1 gap-y-2 text-sm">
             <div>
               <dt className="text-stone-500">Commission Structure</dt>
-              <dd>{lenderDetails.commissionStructure}</dd>
+              <dd>{lenderDetails?.commissionStructure ?? ""}</dd>
             </div>
             <div>
               <dt className="text-stone-500">Payout Method</dt>
-              <dd>{lenderDetails.payoutMethod}</dd>
+              <dd>{lenderDetails?.payoutMethod ?? ""}</dd>
             </div>
             <div>
               <dt className="text-stone-500">Exclusive Products for High-Performing Brokers</dt>
-              <dd>{lenderDetails.offersExclusiveProducts ? 'Yes' : 'No'}</dd>
+              <dd>{lenderDetails?.offersExclusiveProducts ? 'Yes' : 'No'}</dd>
             </div>
           </dl>
         </motion.div>
@@ -262,23 +262,23 @@ const ReviewForm: React.FC<ReviewFormProps> = ({
           <dl className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 text-sm">
             <div>
               <dt className="text-stone-500">Contact Name</dt>
-              <dd>{lenderDetails.contactName}</dd>
+              <dd>{lenderDetails?.contactName ?? ""}</dd>
             </div>
             <div>
               <dt className="text-stone-500">Job Title</dt>
-              <dd>{lenderDetails.contactJobTitle}</dd>
+              <dd>{lenderDetails?.contactJobTitle ?? ""}</dd>
             </div>
             <div>
               <dt className="text-stone-500">Email</dt>
-              <dd>{lenderDetails.contactEmail}</dd>
+              <dd>{lenderDetails?.contactEmail ?? ""}</dd>
             </div>
             <div>
               <dt className="text-stone-500">Mobile</dt>
-              <dd>{lenderDetails.contactMobile}</dd>
+              <dd>{lenderDetails?.contactMobile ?? ""}</dd>
             </div>
             <div className="md:col-span-2">
               <dt className="text-stone-500">Regional Coverage</dt>
-              <dd>{lenderDetails.regionalCoverage || 'Not specified'}</dd>
+              <dd>{lenderDetails?.regionalCoverage || 'Not specified'}</dd>
             </div>
           </dl>
         </motion.div>

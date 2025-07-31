@@ -44,7 +44,7 @@ const PrimaryContactForm: React.FC<PrimaryContactFormProps> = ({
               name="contactName"
               type="text"
               required
-              value={lenderDetails.contactName}
+              value={lenderDetails?.contactName ?? ""}
               onChange={handleChange}
               className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
             />
@@ -60,7 +60,7 @@ const PrimaryContactForm: React.FC<PrimaryContactFormProps> = ({
               name="contactJobTitle"
               type="text"
               required
-              value={lenderDetails.contactJobTitle}
+              value={lenderDetails?.contactJobTitle ?? ""}
               onChange={handleChange}
               className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
             />
@@ -76,7 +76,7 @@ const PrimaryContactForm: React.FC<PrimaryContactFormProps> = ({
               name="contactEmail"
               type="email"
               required
-              value={lenderDetails.contactEmail}
+              value={lenderDetails?.contactEmail ?? ""}
               onChange={handleChange}
               className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
             />
@@ -92,7 +92,7 @@ const PrimaryContactForm: React.FC<PrimaryContactFormProps> = ({
               name="contactMobile"
               type="tel"
               required
-              value={lenderDetails.contactMobile}
+              value={lenderDetails?.contactMobile ?? ""}
               onChange={handleChange}
               className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
             />
@@ -107,7 +107,7 @@ const PrimaryContactForm: React.FC<PrimaryContactFormProps> = ({
               id="regionalCoverage"
               name="regionalCoverage"
               type="text"
-              value={lenderDetails.regionalCoverage}
+              value={lenderDetails?.regionalCoverage ?? ""}
               onChange={handleChange}
               className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
               placeholder="e.g., London, South East, National, etc."

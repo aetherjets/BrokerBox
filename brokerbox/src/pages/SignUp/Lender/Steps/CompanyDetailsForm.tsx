@@ -56,7 +56,7 @@ const CompanyDetailsForm: React.FC<CompanyDetailsFormProps> = ({
               name="tradingName"
               type="text"
               required
-              value={lenderDetails.tradingName}
+              value={lenderDetails?.tradingName ?? ""}
               onChange={handleChange}
               className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
             />
@@ -72,7 +72,7 @@ const CompanyDetailsForm: React.FC<CompanyDetailsFormProps> = ({
               name="companyName"
               type="text"
               required
-              value={lenderDetails.companyName}
+              value={lenderDetails?.companyName ?? ""}
               onChange={handleChange}
               className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
             />
@@ -87,7 +87,7 @@ const CompanyDetailsForm: React.FC<CompanyDetailsFormProps> = ({
               id="companySize"
               name="companySize"
               required
-              value={lenderDetails.companySize}
+              value={lenderDetails?.companySize ?? ""}
               onChange={handleChange}
               className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
             >
@@ -108,7 +108,7 @@ const CompanyDetailsForm: React.FC<CompanyDetailsFormProps> = ({
               name="companiesHouseNumber"
               type="text"
               required
-              value={lenderDetails.companiesHouseNumber}
+              value={lenderDetails?.companiesHouseNumber ?? ""}
               onChange={handleChange}
               className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
             />
@@ -124,7 +124,7 @@ const CompanyDetailsForm: React.FC<CompanyDetailsFormProps> = ({
               name="companyTelephone"
               type="tel"
               required
-              value={lenderDetails.companyTelephone}
+              value={lenderDetails?.companyTelephone ?? ""}
               onChange={handleChange}
               className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
             />
@@ -140,7 +140,7 @@ const CompanyDetailsForm: React.FC<CompanyDetailsFormProps> = ({
               name="fcaNumber"
               type="text"
               required
-              value={lenderDetails.fcaNumber}
+              value={lenderDetails?.fcaNumber ?? ""}
               onChange={handleChange}
               className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
             />
@@ -158,7 +158,7 @@ const CompanyDetailsForm: React.FC<CompanyDetailsFormProps> = ({
             name="companyAddress"
             required
             rows={3}
-            value={lenderDetails.companyAddress}
+            value={lenderDetails?.companyAddress ?? ""}
             onChange={handleChange}
             className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
           />

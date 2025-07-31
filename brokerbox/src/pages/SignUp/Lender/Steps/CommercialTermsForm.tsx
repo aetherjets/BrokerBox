@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react'
 import { motion } from 'framer-motion'
 import { LenderDetails, containerVariants, itemVariants } from '@/lib/types';
@@ -45,7 +47,7 @@ const CommercialTermsForm: React.FC<CommercialTermsFormProps> = ({
             name="commissionStructure"
             rows={3}
             required
-            value={lenderDetails.commissionStructure}
+            value={lenderDetails?.commissionStructure ?? ""}
             onChange={handleChange}
             className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
             placeholder="Describe your standard commission structure (e.g., percentage, tiered rates, etc.)"
@@ -59,7 +61,7 @@ const CommercialTermsForm: React.FC<CommercialTermsFormProps> = ({
           </label>
           <select
             name="payoutMethod"
-            value={lenderDetails.payoutMethod}
+            value={lenderDetails?.payoutMethod ?? ""}
             onChange={handleChange}
             required
             className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
@@ -77,7 +79,7 @@ const CommercialTermsForm: React.FC<CommercialTermsFormProps> = ({
             <input
               type="checkbox"
               name="offersExclusiveProducts"
-              checked={lenderDetails.offersExclusiveProducts}
+              checked={!!lenderDetails?.offersExclusiveProducts}
               onChange={handleChange}
               className="h-4 w-4 text-black border-stone-300 rounded mr-2"
             />

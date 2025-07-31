@@ -47,7 +47,7 @@ const ComplianceRiskForm: React.FC<ComplianceRiskFormProps> = ({
               <input
                 type="checkbox"
                 name="fcaRegRequired"
-                checked={lenderDetails.fcaRegRequired}
+                checked={!!lenderDetails?.fcaRegRequired}
                 onChange={handleChange}
                 className="h-4 w-4 text-black border-stone-300 rounded mr-2"
               />
@@ -63,7 +63,7 @@ const ComplianceRiskForm: React.FC<ComplianceRiskFormProps> = ({
               id="specificDocumentation"
               name="specificDocumentation"
               rows={2}
-              value={lenderDetails.specificDocumentation}
+              value={lenderDetails?.specificDocumentation ?? ""}
               onChange={handleChange}
               className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
               placeholder="Describe any specific documentation or checks required from brokers"
@@ -81,7 +81,7 @@ const ComplianceRiskForm: React.FC<ComplianceRiskFormProps> = ({
             <label className="flex items-center text-sm text-gray-700">
               <input
                 type="checkbox"
-                checked={lenderDetails.amlKycDocuments.idVerification}
+                checked={!!lenderDetails?.amlKycDocuments?.idVerification}
                 onChange={(e) => handleNestedChange('amlKycDocuments', 'idVerification', e.target.checked)}
                 className="h-4 w-4 text-black border-stone-300 rounded mr-2"
               />
@@ -91,7 +91,7 @@ const ComplianceRiskForm: React.FC<ComplianceRiskFormProps> = ({
             <label className="flex items-center text-sm text-gray-700">
               <input
                 type="checkbox"
-                checked={lenderDetails.amlKycDocuments.passportDrivingLicense}
+                checked={!!lenderDetails?.amlKycDocuments?.passportDrivingLicense}
                 onChange={(e) => handleNestedChange('amlKycDocuments', 'passportDrivingLicense', e.target.checked)}
                 className="h-4 w-4 text-black border-stone-300 rounded mr-2"
               />
@@ -101,7 +101,7 @@ const ComplianceRiskForm: React.FC<ComplianceRiskFormProps> = ({
             <label className="flex items-center text-sm text-gray-700">
               <input
                 type="checkbox"
-                checked={lenderDetails.amlKycDocuments.proofOfAddress}
+                checked={!!lenderDetails?.amlKycDocuments?.proofOfAddress}
                 onChange={(e) => handleNestedChange('amlKycDocuments', 'proofOfAddress', e.target.checked)}
                 className="h-4 w-4 text-black border-stone-300 rounded mr-2"
               />
@@ -111,7 +111,7 @@ const ComplianceRiskForm: React.FC<ComplianceRiskFormProps> = ({
             <label className="flex items-center text-sm text-gray-700">
               <input
                 type="checkbox"
-                checked={lenderDetails.amlKycDocuments.businessBankStatements}
+                checked={!!lenderDetails?.amlKycDocuments?.businessBankStatements}
                 onChange={(e) => handleNestedChange('amlKycDocuments', 'businessBankStatements', e.target.checked)}
                 className="h-4 w-4 text-black border-stone-300 rounded mr-2"
               />
@@ -121,7 +121,7 @@ const ComplianceRiskForm: React.FC<ComplianceRiskFormProps> = ({
             <label className="flex items-center text-sm text-gray-700">
               <input
                 type="checkbox"
-                checked={lenderDetails.amlKycDocuments.filedAccounts}
+                checked={!!lenderDetails?.amlKycDocuments?.filedAccounts}
                 onChange={(e) => handleNestedChange('amlKycDocuments', 'filedAccounts', e.target.checked)}
                 className="h-4 w-4 text-black border-stone-300 rounded mr-2"
               />
@@ -131,7 +131,7 @@ const ComplianceRiskForm: React.FC<ComplianceRiskFormProps> = ({
             <label className="flex items-center text-sm text-gray-700">
               <input
                 type="checkbox"
-                checked={lenderDetails.amlKycDocuments.openBanking}
+                checked={!!lenderDetails?.amlKycDocuments?.openBanking}
                 onChange={(e) => handleNestedChange('amlKycDocuments', 'openBanking', e.target.checked)}
                 className="h-4 w-4 text-black border-stone-300 rounded mr-2"
               />
@@ -146,7 +146,7 @@ const ComplianceRiskForm: React.FC<ComplianceRiskFormProps> = ({
             <textarea
               id="otherDocuments"
               rows={2}
-              value={lenderDetails.amlKycDocuments.otherDocuments}
+              value={lenderDetails?.amlKycDocuments?.otherDocuments ?? ""}
               onChange={(e) => handleNestedChange('amlKycDocuments', 'otherDocuments', e.target.value)}
               className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
               placeholder="List any other required documentation"
@@ -165,7 +165,7 @@ const ComplianceRiskForm: React.FC<ComplianceRiskFormProps> = ({
                 <input
                   type="radio"
                   name="runsOwnAffordabilityChecks"
-                  checked={lenderDetails.runsOwnAffordabilityChecks === true}
+                  checked={lenderDetails?.runsOwnAffordabilityChecks === true}
                   onChange={() => setLenderDetails(prev => ({ ...prev, runsOwnAffordabilityChecks: true }))}
                   className="h-4 w-4 text-black border-stone-300 mr-2"
                 />
@@ -176,7 +176,7 @@ const ComplianceRiskForm: React.FC<ComplianceRiskFormProps> = ({
                 <input
                   type="radio"
                   name="runsOwnAffordabilityChecks"
-                  checked={lenderDetails.runsOwnAffordabilityChecks === false}
+                  checked={lenderDetails?.runsOwnAffordabilityChecks === false}
                   onChange={() => setLenderDetails(prev => ({ ...prev, runsOwnAffordabilityChecks: false }))}
                   className="h-4 w-4 text-black border-stone-300 mr-2"
                 />
@@ -191,7 +191,7 @@ const ComplianceRiskForm: React.FC<ComplianceRiskFormProps> = ({
               <input
                 type="checkbox"
                 name="acceptsCoBrokeredDeals"
-                checked={lenderDetails.acceptsCoBrokeredDeals}
+                checked={!!lenderDetails?.acceptsCoBrokeredDeals}
                 onChange={handleChange}
                 className="h-4 w-4 text-black border-stone-300 rounded mr-2"
               />

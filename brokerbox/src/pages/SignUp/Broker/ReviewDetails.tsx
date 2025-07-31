@@ -81,39 +81,39 @@ const ReviewDetails: React.FC<ReviewDetailsProps> = ({
             <dl className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2">
               <div>
                 <dt className="text-sm text-stone-600">Trading Name</dt>
-                <dd className="font-medium">{companyDetails.tradingName}</dd>
+                <dd className="font-medium">{companyDetails?.tradingName ?? ""}</dd>
               </div>
               <div>
                 <dt className="text-sm text-stone-600">Years Trading</dt>
-                <dd className="font-medium">{companyDetails.yearsTrading}</dd>
+                <dd className="font-medium">{companyDetails?.yearsTrading ?? ""}</dd>
               </div>
               <div>
                 <dt className="text-sm text-stone-600">Company Size</dt>
-                <dd className="font-medium">{companyDetails.companySize}</dd>
+                <dd className="font-medium">{companyDetails?.companySize ?? ""}</dd>
               </div>
               <div>
                 <dt className="text-sm text-stone-600">Company Name</dt>
-                <dd className="font-medium">{companyDetails.companyName}</dd>
+                <dd className="font-medium">{companyDetails?.companyName ?? ""}</dd>
               </div>
               <div>
                 <dt className="text-sm text-stone-600">Companies House Number</dt>
-                <dd className="font-medium">{companyDetails.companiesHouseNumber}</dd>
+                <dd className="font-medium">{companyDetails?.companiesHouseNumber ?? ""}</dd>
               </div>
               <div>
                 <dt className="text-sm text-stone-600">Company Telephone</dt>
-                <dd className="font-medium">{companyDetails.companyTelephone}</dd>
+                <dd className="font-medium">{companyDetails?.companyTelephone ?? ""}</dd>
               </div>
               <div>
                 <dt className="text-sm text-stone-600">FCA Registration (if applicable)</dt>
-                <dd className="font-medium">{companyDetails.fcaNumber || 'Not provided'}</dd>
+                <dd className="font-medium">{companyDetails?.fcaNumber || 'Not provided'}</dd>
               </div>
               <div className="md:col-span-2">
                 <dt className="text-sm text-stone-600">Finance Types</dt>
-                <dd className="font-medium">{companyDetails.financeTypes.join(', ')}</dd>
+                <dd className="font-medium">{companyDetails?.financeTypes?.join(', ') ?? ""}</dd>
               </div>
               <div className="md:col-span-2">
                 <dt className="text-sm text-stone-600">Company Address</dt>
-                <dd className="font-medium">{companyDetails.companyAddress}</dd>
+                <dd className="font-medium">{companyDetails?.companyAddress ?? ""}</dd>
               </div>
             </dl>
           </div>
@@ -133,31 +133,31 @@ const ReviewDetails: React.FC<ReviewDetailsProps> = ({
             <dl className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2">
               <div>
                 <dt className="text-sm text-stone-600">Director&apos;s Name</dt>
-                <dd className="font-medium">{directorDetails.name}</dd>
+                <dd className="font-medium">{directorDetails?.name ?? ""}</dd>
               </div>
               <div>
                 <dt className="text-sm text-stone-600">Mobile</dt>
-                <dd className="font-medium">{directorDetails.mobile}</dd>
+                <dd className="font-medium">{directorDetails?.mobile ?? ""}</dd>
               </div>
               <div>
                 <dt className="text-sm text-stone-600">Email</dt>
-                <dd className="font-medium">{directorDetails.email}</dd>
+                <dd className="font-medium">{directorDetails?.email ?? ""}</dd>
               </div>
               <div>
                 <dt className="text-sm text-stone-600">Date of Birth</dt>
-                <dd className="font-medium">{directorDetails.dateOfBirth}</dd>
+                <dd className="font-medium">{directorDetails?.dateOfBirth ?? ""}</dd>
               </div>
               <div className="md:col-span-2">
                 <dt className="text-sm text-stone-600">Address</dt>
-                <dd className="font-medium">{directorDetails.address}</dd>
+                <dd className="font-medium">{directorDetails?.address ?? ""}</dd>
               </div>
               <div>
                 <dt className="text-sm text-stone-600">Driving License (Front)</dt>
-                <dd className="font-medium">{directorDetails.drivingLicenseFront?.name}</dd>
+                <dd className="font-medium">{directorDetails?.drivingLicenseFront?.name ?? ""}</dd>
               </div>
               <div>
                 <dt className="text-sm text-stone-600">Driving License (Rear)</dt>
-                <dd className="font-medium">{directorDetails.drivingLicenseRear?.name}</dd>
+                <dd className="font-medium">{directorDetails?.drivingLicenseRear?.name ?? ""}</dd>
               </div>
             </dl>
           </div>
