@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import CompanyDetailsForm, { CompanyDetails } from "./CompanyDetailsForm";
 import DirectorDetailsForm, { DirectorDetails } from "./DirectorDetailsForm";
 import ReviewDetails from "./ReviewDetails";
+import axios from "axios";
 
 interface BrokerOnboardingProps {
   onComplete: () => void;
@@ -15,13 +16,14 @@ const BrokerOnboarding: React.FC<BrokerOnboardingProps> = ({ onComplete }) => {
   const [currentStep, setCurrentStep] =
     useState<OnboardingStep>("companyDetails");
   const [isLoading, setIsLoading] = useState(false);
+  const [uploadingSide, setUploadingSide] = useState<null | "front" | "rear">(null);
 
   const [companyDetails, setCompanyDetails] = useState<CompanyDetails>({
     tradingName: "",
     yearsTrading: "",
     companySize: "",
     companyName: "",
-    companiesHouseNumber: "",
+    companyHouseNumber: "",
     companyTelephone: "",
     financeTypes: [],
     fcaNumber: "",
@@ -34,8 +36,8 @@ const BrokerOnboarding: React.FC<BrokerOnboardingProps> = ({ onComplete }) => {
     mobile: "",
     email: "",
     dateOfBirth: "",
-    drivingLicenseFront: null,
-    drivingLicenseRear: null,
+    drivingLicenseFront: "",
+    drivingLicenseRear: "",
   });
 
   const containerVariants = {
@@ -84,7 +86,6 @@ const BrokerOnboarding: React.FC<BrokerOnboardingProps> = ({ onComplete }) => {
     "500+ employees",
   ];
 
-  // Handle form input changes
   const handleCompanyChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
@@ -107,20 +108,36 @@ const BrokerOnboarding: React.FC<BrokerOnboardingProps> = ({ onComplete }) => {
     }));
   };
 
-  const handleFileChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    side: "front" | "rear"
-  ) => {
-    if (e.target.files && e.target.files[0]) {
-      setDirectorDetails((prev) => ({
-        ...prev,
-        [side === "front" ? "drivingLicenseFront" : "drivingLicenseRear"]:
-          e.target.files![0],
-      }));
+  const handleUploadImage = async (file: File, side: "front" | "rear") => {
+    try {
+      setUploadingSide(side);
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const response = await axios.post("/api/onboarding/fileUpload", formData,{
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      if (response.status === 200) {
+        const data = response.data as { url: string };
+        setDirectorDetails((prev) => ({
+          ...prev,
+          [side === "front" ? "drivingLicenseFront" : "drivingLicenseRear"]: data.url,
+        }));
+        return data.url;
+      } else {
+        throw new Error("File upload failed");
+      }
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      throw error;
+    } finally {
+      setUploadingSide(null);
     }
   };
 
-  // Handle finance type checkboxes
   const handleFinanceTypeChange = (type: string) => {
     setCompanyDetails((prev) => {
       if (prev.financeTypes.includes(type)) {
@@ -137,6 +154,7 @@ const BrokerOnboarding: React.FC<BrokerOnboardingProps> = ({ onComplete }) => {
     });
   };
 
+  
   const handleNextStep = () => {
     if (currentStep === "companyDetails") {
       setCurrentStep("directorDetails");
@@ -153,19 +171,26 @@ const BrokerOnboarding: React.FC<BrokerOnboardingProps> = ({ onComplete }) => {
     }
   };
 
-  // Submit the form
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
-    console.log("Submitting data:", {
-      companyDetails,
-      directorDetails,
-    });
-    // In a real app, you would send the data to your API here
-    setTimeout(() => {
+    try {
+      setIsLoading(true);
+
+      const response = await axios.post("/api/onboarding/broker", {
+        companyDetails,
+        directorDetails,
+      });
+
+      console.log("Response", response);
+      setTimeout(() => {
+        setIsLoading(false);
+        onComplete();
+      }, 2000);
+    } catch (error) {
       setIsLoading(false);
-      onComplete();
-    }, 2000);
+      console.error("Error submitting data:", error);
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -264,9 +289,10 @@ const BrokerOnboarding: React.FC<BrokerOnboardingProps> = ({ onComplete }) => {
             <DirectorDetailsForm
               directorDetails={directorDetails}
               handleDirectorChange={handleDirectorChange}
-              handleFileChange={handleFileChange}
               handleNextStep={handleNextStep}
               handlePrevStep={handlePrevStep}
+              handleUploadImage={handleUploadImage}
+              uploadingSide={uploadingSide}
             />
           )}
 

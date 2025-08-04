@@ -1,6 +1,7 @@
 "use client"
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 export interface DirectorDetails {
   name: string
@@ -8,26 +9,28 @@ export interface DirectorDetails {
   mobile: string
   email: string
   dateOfBirth: string
-  drivingLicenseFront: File | null
-  drivingLicenseRear: File | null
+  drivingLicenseFront: string
+  drivingLicenseRear: string
 }
 
 interface DirectorDetailsFormProps {
   directorDetails: DirectorDetails
   handleDirectorChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
-  handleFileChange: (e: React.ChangeEvent<HTMLInputElement>, side: 'front' | 'rear') => void
   handleNextStep: () => void
   handlePrevStep: () => void
+  handleUploadImage?: (file: File, side: 'front' | 'rear') => Promise<string>
+  uploadingSide?: null | 'front' | 'rear'
 }
 
 const DirectorDetailsForm: React.FC<DirectorDetailsFormProps> = ({
   directorDetails,
   handleDirectorChange,
-  handleFileChange,
   handleNextStep,
-  handlePrevStep
+  handlePrevStep,
+  handleUploadImage,
+  uploadingSide = null
 }) => {
-  
+
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
     visible: { 
@@ -41,6 +44,26 @@ const DirectorDetailsForm: React.FC<DirectorDetailsFormProps> = ({
       transition: { duration: 0.2 }
     }
   }
+
+  const [uploadedUrls, setUploadedUrls] = useState<{ front?: string; rear?: string }>({});
+
+  const onFileChange = async (
+    e: React.ChangeEvent<HTMLInputElement>,
+    side: 'front' | 'rear'
+  ) => {
+
+    const file = e.target.files?.[0];
+    if (file && handleUploadImage) {
+      try {
+        const url = await handleUploadImage(file, side);
+        setUploadedUrls((prev) => ({ ...prev, [side]: url }));
+        console.log(`File uploaded successfully: ${url}`);
+      } catch (err) {
+        console.error("File upload failed:", err);
+        alert("Failed to upload file. Please try again.");
+      }
+    }
+  };
 
   return (
     <motion.div
@@ -137,9 +160,20 @@ const DirectorDetailsForm: React.FC<DirectorDetailsFormProps> = ({
               </label>
               <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-stone-300 border-dashed rounded-lg">
                 <div className="space-y-1 text-center">
-                  <svg className="mx-auto h-12 w-12 text-stone-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
-                    <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
+                  {/* Show image if uploaded, else SVG */}
+                  {(uploadedUrls.front || directorDetails?.drivingLicenseFront) ? (
+                    <Image
+                      src={uploadedUrls.front || directorDetails?.drivingLicenseFront}
+                      alt="Driving License Front"
+                      className="mx-auto h-12 w-20 object-contain rounded shadow"
+                      width={80}
+                      height={60}
+                    />
+                  ) : (
+                    <svg className="mx-auto h-12 w-12 text-stone-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                      <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  )}
                   <div className="flex text-sm text-stone-600">
                     <label htmlFor="drivingLicenseFront" className="relative cursor-pointer bg-white rounded-md font-medium text-black hover:text-black">
                       <span>Upload a file</span>
@@ -149,15 +183,34 @@ const DirectorDetailsForm: React.FC<DirectorDetailsFormProps> = ({
                         type="file" 
                         className="sr-only" 
                         accept="image/*"
-                        onChange={(e) => handleFileChange(e, 'front')}
+                        onChange={(e) => onFileChange(e, 'front')}
                         required
                       />
                     </label>
                   </div>
                   <p className="text-xs text-stone-500">
-                    {directorDetails?.drivingLicenseFront 
-                      ? directorDetails?.drivingLicenseFront.name 
-                      : 'PNG, JPG up to 5MB'}
+                    {uploadingSide === 'front' ? (
+                      <span>Uploading...</span>
+                    ) : uploadedUrls.front ? (
+                      <a
+                        href={uploadedUrls.front}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600 underline inline-block max-w-xs align-middle bg-stone-100 px-2 py-1 rounded"
+                        style={{ wordBreak: 'break-all', overflowX: 'auto', display: 'block' }}
+                      >
+                        {uploadedUrls.front}
+                      </a>
+                    ) : directorDetails?.drivingLicenseFront ? (
+                      <span
+                        className="inline-block max-w-xs align-middle bg-stone-100 px-2 py-1 rounded"
+                        style={{ wordBreak: 'break-all', overflowX: 'auto', display: 'block' }}
+                      >
+                        {directorDetails?.drivingLicenseFront}
+                      </span>
+                    ) : (
+                      'PNG, JPG up to 5MB'
+                    )}
                   </p>
                 </div>
               </div>
@@ -169,9 +222,20 @@ const DirectorDetailsForm: React.FC<DirectorDetailsFormProps> = ({
               </label>
               <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-stone-300 border-dashed rounded-lg">
                 <div className="space-y-1 text-center">
-                  <svg className="mx-auto h-12 w-12 text-stone-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
-                    <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
+                  {/* Show image if uploaded, else SVG */}
+                  {(uploadedUrls.rear || directorDetails?.drivingLicenseRear) ? (
+                    <Image
+                      src={uploadedUrls.rear || directorDetails?.drivingLicenseRear}
+                      alt="Driving License Rear"
+                      className="mx-auto h-12 w-20 object-contain rounded shadow"
+                      width={80}
+                      height={60}
+                    />
+                  ) : (
+                    <svg className="mx-auto h-12 w-12 text-stone-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                      <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  )}
                   <div className="flex text-sm text-stone-600">
                     <label htmlFor="drivingLicenseRear" className="relative cursor-pointer bg-white rounded-md font-medium text-black hover:text-black">
                       <span>Upload a file</span>
@@ -181,15 +245,34 @@ const DirectorDetailsForm: React.FC<DirectorDetailsFormProps> = ({
                         type="file" 
                         className="sr-only" 
                         accept="image/*"
-                        onChange={(e) => handleFileChange(e, 'rear')}
+                        onChange={(e) => onFileChange(e, 'rear')}
                         required
                       />
                     </label>
                   </div>
                   <p className="text-xs text-stone-500">
-                    {directorDetails?.drivingLicenseRear?.name
-                      ? directorDetails?.drivingLicenseRear.name
-                      : 'PNG, JPG up to 5MB'}
+                    {uploadingSide === 'rear' ? (
+                      <span>Uploading...</span>
+                    ) : uploadedUrls.rear ? (
+                      <a
+                        href={uploadedUrls.rear}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600 underline inline-block max-w-xs align-middle bg-stone-100 px-2 py-1 rounded"
+                        style={{ wordBreak: 'break-all', overflowX: 'auto', display: 'block' }}
+                      >
+                        {uploadedUrls.rear}
+                      </a>
+                    ) : directorDetails?.drivingLicenseRear ? (
+                      <span
+                        className="inline-block max-w-xs align-middle bg-stone-100 px-2 py-1 rounded"
+                        style={{ wordBreak: 'break-all', overflowX: 'auto', display: 'block' }}
+                      >
+                        {directorDetails?.drivingLicenseRear}
+                      </span>
+                    ) : (
+                      'PNG, JPG up to 5MB'
+                    )}
                   </p>
                 </div>
               </div>

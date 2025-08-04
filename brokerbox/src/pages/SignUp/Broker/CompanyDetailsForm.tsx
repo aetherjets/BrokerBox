@@ -7,7 +7,7 @@ export interface CompanyDetails {
   yearsTrading: string
   companySize: string
   companyName: string
-  companiesHouseNumber: string
+  companyHouseNumber: string
   companyTelephone: string
   financeTypes: string[]
   fcaNumber: string
@@ -24,8 +24,8 @@ interface CompanyDetailsFormProps {
 }
 
 const CompanyDetailsForm: React.FC<CompanyDetailsFormProps> = ({ 
-  companyDetails, 
-  handleCompanyChange, 
+  companyDetails,
+  handleCompanyChange,
   handleFinanceTypeChange, 
   handleNextStep,
   companySizeOptions,
@@ -121,15 +121,15 @@ const CompanyDetailsForm: React.FC<CompanyDetailsFormProps> = ({
           </motion.div>
 
           <motion.div variants={itemVariants}>
-            <label htmlFor="companiesHouseNumber" className="block text-sm font-medium text-gray-700 mb-1">
-              Companies House Number*
+            <label htmlFor="companyHouseNumber" className="block text-sm font-medium text-gray-700 mb-1">
+              Company House Number*
             </label>
             <input
-              id="companiesHouseNumber"
-              name="companiesHouseNumber"
+              id="companyHouseNumber"
+              name="companyHouseNumber"
               type="text"
               required
-              value={companyDetails?.companiesHouseNumber}
+              value={companyDetails?.companyHouseNumber}
               onChange={handleCompanyChange}
               className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
             />

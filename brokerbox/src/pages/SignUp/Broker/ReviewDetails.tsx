@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { CompanyDetails } from './CompanyDetailsForm'
 import { DirectorDetails } from './DirectorDetailsForm'
+import Image from 'next/image'
 
 interface ReviewDetailsProps {
   companyDetails: CompanyDetails
@@ -96,8 +97,8 @@ const ReviewDetails: React.FC<ReviewDetailsProps> = ({
                 <dd className="font-medium">{companyDetails?.companyName ?? ""}</dd>
               </div>
               <div>
-                <dt className="text-sm text-stone-600">Companies House Number</dt>
-                <dd className="font-medium">{companyDetails?.companiesHouseNumber ?? ""}</dd>
+                <dt className="text-sm text-stone-600">Company House Number</dt>
+                <dd className="font-medium">{companyDetails?.companyHouseNumber ?? ""}</dd>
               </div>
               <div>
                 <dt className="text-sm text-stone-600">Company Telephone</dt>
@@ -153,11 +154,39 @@ const ReviewDetails: React.FC<ReviewDetailsProps> = ({
               </div>
               <div>
                 <dt className="text-sm text-stone-600">Driving License (Front)</dt>
-                <dd className="font-medium">{directorDetails?.drivingLicenseFront?.name ?? ""}</dd>
+                <dd className="font-medium">
+                  {directorDetails?.drivingLicenseFront ? (
+                    <Image
+                      src={directorDetails.drivingLicenseFront}
+                      alt="Driving License Front"
+                      className="h-12 w-20 object-contain rounded shadow bg-stone-100"
+                      width={80}
+                      height={60}
+                    />
+                  ) : (
+                    <svg className="mx-auto h-12 w-12 text-stone-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                      <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  )}
+                </dd>
               </div>
               <div>
                 <dt className="text-sm text-stone-600">Driving License (Rear)</dt>
-                <dd className="font-medium">{directorDetails?.drivingLicenseRear?.name ?? ""}</dd>
+                <dd className="font-medium">
+                  {directorDetails?.drivingLicenseRear ? (
+                    <Image
+                      src={directorDetails.drivingLicenseRear}
+                      alt="Driving License Rear"
+                      className="h-12 w-20 object-contain rounded shadow bg-stone-100"
+                      width={80}
+                      height={60}
+                    />
+                  ) : (
+                    <svg className="mx-auto h-12 w-12 text-stone-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                      <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  )}
+                </dd>
               </div>
             </dl>
           </div>

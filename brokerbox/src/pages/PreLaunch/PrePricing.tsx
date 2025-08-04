@@ -19,19 +19,20 @@ const PrePricing = () => {
 
 
   const handleSubscribe = async () => {
-    // try {
-    //   const email = emailInputValue;
-    //   console.log("Email entered:", email);
+    try {
+      const email = emailInputValue;
+      console.log("Email entered:", email);
       
 
-    //   const STRIPE_PAYMENT_LINK = process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK;
+      // const STRIPE_PAYMENT_LINK = process.env.NODE_ENV == "development" ? process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK_DEV : process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK;
+      const STRIPE_PAYMENT_LINK = process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK_DEV;
+
+      const paymentLinkWithEmail = `${STRIPE_PAYMENT_LINK}?prefilled_email=${encodeURIComponent(email)}`;
       
-    //   const paymentLinkWithEmail = `${STRIPE_PAYMENT_LINK}?prefilled_email=${encodeURIComponent(email)}`;
-      
-    //   window.location.href = paymentLinkWithEmail;
-    // } catch (error) {
-    //   console.error("Error redirecting to payment link:", error);
-    // }
+      window.location.href = paymentLinkWithEmail;
+    } catch (error) {
+      console.error("Error redirecting to payment link:", error);
+    }
     console.log("Value entered:", emailInputValue);
   };
   
