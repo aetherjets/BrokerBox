@@ -25,7 +25,7 @@ const PrePricing = () => {
       
 
       // const STRIPE_PAYMENT_LINK = process.env.NODE_ENV == "development" ? process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK_DEV : process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK;
-      const STRIPE_PAYMENT_LINK = process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK_DEV;
+      const STRIPE_PAYMENT_LINK = process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK;
 
       const paymentLinkWithEmail = `${STRIPE_PAYMENT_LINK}?prefilled_email=${encodeURIComponent(email)}`;
       
